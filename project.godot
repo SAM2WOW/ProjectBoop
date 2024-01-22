@@ -1,0 +1,64 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="ProjectBoop"
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.2")
+boot_splash/bg_color=Color(1, 1, 1, 1)
+boot_splash/image="res://Loading.png"
+boot_splash/fullsize=false
+config/icon="res://Face.png"
+
+[autoload]
+
+SoundPlayer="*res://scripts/Sound_player.gd"
+
+[display]
+
+window/size/viewport_width=1024
+window/size/viewport_height=512
+window/size/borderless=true
+window/size/always_on_top=true
+window/size/transparent=true
+window/size/window_width_override=512
+window/size/window_height_override=512
+window/energy_saving/keep_screen_on=false
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+window/per_pixel_transparency/allowed=true
+window/per_pixel_transparency/enabled=true
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+menu={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(83, 27),"global_position":Vector2(87, 68),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.301961, 0.301961, 0.301961, 1)
+anti_aliasing/quality/msaa_2d=1
+viewport/transparent_background=true
+environment/defaults/default_environment="res://default_env.tres"
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
