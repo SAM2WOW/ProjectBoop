@@ -80,7 +80,7 @@ func _input(event):
 
 
 func speaking():
-	$"../Textbox/VBoxContainer/RichTextLabel".set_text(speech[randi() % len(speech)])
+	$"../Textbox/VBoxContainer/RichTextLabel".set_text("[center]%s[/center]" % speech[randi() % len(speech)])
 	$"../AnimationPlayer".stop()
 	$"../AnimationPlayer".play("speaking")
 	tapping = 0

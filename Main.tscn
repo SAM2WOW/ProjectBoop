@@ -195,7 +195,7 @@ tracks/5/path = NodePath("Textbox/VBoxContainer/RichTextLabel:visible_ratio")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [0.0, 1.0]
