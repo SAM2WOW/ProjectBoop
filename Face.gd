@@ -50,6 +50,8 @@ func _input(event):
 				$"../Textbox/VBoxContainer/RichTextLabel".set_text(speech[randi() % len(speech)])
 				$"../AnimationPlayer".play("speaking")
 				tapping = 0
+				
+				SoundPlayer.play(["Kirin1", "Kirin2", "Kirin3", "Kirin4"][randi() % 4])
 			
 			var s = start.instantiate()
 			$Area2D.add_child(s)

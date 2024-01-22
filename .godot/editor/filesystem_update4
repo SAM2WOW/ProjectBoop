@@ -3,3 +3,4 @@ res://Main.tscn
 res://Star.tscn
 res://Main.gd
 res://Face.gd
+res://scripts/Sound_player.gd
