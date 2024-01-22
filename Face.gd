@@ -80,13 +80,17 @@ func _input(event):
 
 
 func speaking():
-	$"../Textbox/VBoxContainer/RichTextLabel".set_text("[center]%s[/center]" % speech[randi() % len(speech)])
+	if $"..".speech_list.is_empty():
+		return
+	
+	#$"../Textbox/VBoxContainer/RichTextLabel".set_text("[center]%s[/center]" % speech[randi() % len(speech)])
+	$"../Textbox/VBoxContainer/RichTextLabel".set_text("[center]%s[/center]" % $"..".speech_list[randi() % len($"..".speech_list)])
 	$"../AnimationPlayer".stop()
 	$"../AnimationPlayer".play("speaking")
 	tapping = 0
 	
-	#SoundPlayer.play(["Kirin1", "Kirin2", "Kirin3", "Kirin4"][randi() % 4])
-	SoundPlayer.speak()
+	SoundPlayer.play(["Kirin1", "Kirin2", "Kirin3", "Kirin4"][randi() % 4])
+	#SoundPlayer.speak()
 
 func _process(delta):
 	if pull:

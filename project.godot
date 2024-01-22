@@ -12,7 +12,7 @@ config_version=5
 
 config/name="ProjectBoop"
 config/description="Boop people!"
-config/version="1.0"
+config/version="1.1"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.2")
 boot_splash/bg_color=Color(1, 1, 1, 1)
@@ -28,6 +28,7 @@ SoundPlayer="*res://scripts/Sound_player.gd"
 
 window/size/viewport_width=1024
 window/size/viewport_height=512
+window/size/initial_position_type=0
 window/size/borderless=true
 window/size/always_on_top=true
 window/size/transparent=true
@@ -62,7 +63,7 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
+renderer/rendering_method="mobile"
 environment/defaults/default_clear_color=Color(0.301961, 0.301961, 0.301961, 1)
 anti_aliasing/quality/msaa_2d=1
 viewport/transparent_background=true

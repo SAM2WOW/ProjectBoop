@@ -29,8 +29,8 @@ func _ready():
 func add_sound(path):
 	var s = AudioStreamPlayer.new()
 	var script = load("res://scripts/AudioRandomizer.gd")
-	var audio_loader = AudioLoader.new()
-	s.set_stream(audio_loader.loadfile(path))
+	#var audio_loader = AudioLoader.new()
+	#s.set_stream(audio_loader.loadfile(path))
 	s.set_bus("Sound")
 	s.set_script(script)
 	add_child(s)
@@ -43,4 +43,5 @@ func play(sound_name):
 
 
 func speak():
-	speech[randi() % len(speech)].play()
+	pass
+	#speech[randi() % len(speech)].play()

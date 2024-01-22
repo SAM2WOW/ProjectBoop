@@ -4,6 +4,7 @@ extends Node2D
 var click_pos
 
 var menu = false
+var snapDistance = 50
 
 var character_list = []
 var current_character = 0
@@ -12,6 +13,8 @@ var default_texture
 var open_texture
 
 var audio_list = []
+var speech_list = []
+
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
@@ -27,14 +30,17 @@ func _ready():
 	#get_viewport().transparent_bg = true
 	
 	#SoundPlayer.play(["Kirin1", "Kirin3", "Kirin4"][randi() % 3])
-	SoundPlayer.speak()
+	#SoundPlayer.speak()
 	
 	var app_path = OS.get_executable_path()
 	print(app_path)
 	dir_contents("user://levels")
 	
-	for i in character_list:
-		dir_contents("user://levels/%s" % i)
+	#for i in character_list:
+	#	dir_contents("user://levels/%s" % i)
+	
+	# load the first character
+	load_character(character_list[0])
 
 
 func dir_contents(path):
@@ -64,22 +70,32 @@ func dir_contents(path):
 func _process(delta):
 	if Input.is_action_just_pressed("menu"):
 		click_pos = get_local_mouse_position()
+	
+	if Input.is_action_just_released("menu"):
+		var distance = click_pos.distance_to(get_local_mouse_position())
 		
-		if not menu:
-			menu = true
-			$CanvasLayer.show()
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			$Hand.hide()
-		else:
-			menu = false
-			$CanvasLayer.hide()
-			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-			$Hand.show()
+		if distance <= 2:
+			if not menu:
+				menu = true
+				$CanvasLayer.show()
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+				$Hand.hide()
+			else:
+				menu = false
+				$CanvasLayer.hide()
+				Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+				$Hand.show()
 		
 	if Input.is_action_pressed("menu"):
-		var new_pos = Vector2(DisplayServer.window_get_position()) + get_global_mouse_position() - click_pos
+		var new_pos = Vector2(get_window().get_position()) + get_global_mouse_position() - click_pos
 		#DisplayServer.window_set_position(Vector2(0, new_pos.y))
-		DisplayServer.window_set_position(new_pos)
+		#DisplayServer.window_set_position(new_pos)
+		
+		# Snap to the left edge if close
+		if new_pos.x < snapDistance:
+			new_pos.x = 0
+		
+		get_window().set_position(lerp(Vector2(get_window().get_position()), Vector2(new_pos), delta * 20))
 
 
 func _on_exit_pressed():
@@ -105,12 +121,23 @@ func _on_timer_timeout():
 func _on_change_pressed():
 	current_character = wrapi(current_character + 1, 0, len(character_list))
 	
+	load_character(character_list[current_character])
+
+
+func load_character(character):
+	# change hint name
+	$CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer2/Tuber.set_text(character)
+	
 	# load all the sprites from the directory
-	dir_contents("user://levels/%s" % character_list[current_character])
+	dir_contents("user://levels/%s" % character)
 	
 	# load default sprite
-	var image = Image.load_from_file("user://levels/%s/%s" % [character_list[current_character], "close.png"])
-	#print("user://levels/%s/%s" % [character_list[current_character], "close.png"])
+	var image = Image.load_from_file("user://levels/%s/%s" % [character, "close.png"])
+	
+	# if player doesn't have anything
+	if not image:
+		image = Image.load_from_file("res://arts/ui/huh.png")
+	
 	default_texture = ImageTexture.create_from_image(image)
 	var new_width = float(default_texture.get_width()) * (512.0 / float(default_texture.get_height()))
 	default_texture.set_size_override(Vector2i(round(new_width), 512))
@@ -119,7 +146,7 @@ func _on_change_pressed():
 	$Face/FaceShadow.set_texture(default_texture)
 	
 	# load mouth open sprite
-	var image2 = Image.load_from_file("user://levels/%s/%s" % [character_list[current_character], "open.png"])
+	var image2 = Image.load_from_file("user://levels/%s/%s" % [character, "open.png"])
 	
 	# check if open image is included, else restore to default
 	if not image2:
@@ -131,8 +158,18 @@ func _on_change_pressed():
 	# load all the sound files
 	for i in audio_list:
 		print(i)
+	
+	# load the speech files
+	if FileAccess.file_exists("user://levels/%s/%s" % [character, "speech.txt"]):
+		var file = FileAccess.open("user://levels/%s/%s" % [character, "speech.txt"], FileAccess.READ)
+		var content = file.get_as_text()
+		speech_list = content.split("\r\n", false)
+	
+		print(speech_list)
+
 
 func change_speech_face(open):
-	print(open)
+	return
+	
 	$Face.set_texture(open_texture if open else default_texture)
 	$Face/FaceShadow.set_texture(open_texture if open else default_texture)
