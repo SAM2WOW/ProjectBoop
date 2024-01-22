@@ -1,15 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://3w5l0q4ycym4"]
+[gd_scene load_steps=23 format=3 uid="uid://3w5l0q4ycym4"]
 
 [ext_resource type="Texture2D" uid="uid://cfqud845ymcnh" path="res://arts/sprites/Face.png" id="1"]
 [ext_resource type="Script" path="res://Main.gd" id="1_1fkhw"]
 [ext_resource type="Script" path="res://Face.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://cs5aytmllktta" path="res://arts/ui/Textbox.png" id="2_lrly4"]
 [ext_resource type="Texture2D" uid="uid://dgb13itud0tou" path="res://arts/sprites/hand.png" id="3"]
 [ext_resource type="Script" path="res://Hand.gd" id="4"]
-[ext_resource type="Texture2D" uid="uid://bcndfnwkpo2kk" path="res://arts/sprites/text-box-png-22.png" id="6_d0343"]
 [ext_resource type="Shader" path="res://Mask.gdshader" id="6_ygcoy"]
-[ext_resource type="FontFile" uid="uid://dmdmftfml05lx" path="res://arts/Comfortaa-Regular.ttf" id="7_b8lk8"]
+[ext_resource type="FontFile" uid="uid://dmdmftfml05lx" path="res://arts/ui/Comfortaa-Regular.ttf" id="7_b8lk8"]
 [ext_resource type="Texture2D" uid="uid://iiw63p0sj3ut" path="res://arts/sprites/handshadow.png" id="8_qboru"]
+[ext_resource type="Texture2D" uid="uid://cthljum2pqxy2" path="res://arts/ui/Buttons.png" id="11_ens3u"]
 [ext_resource type="Texture2D" uid="uid://bp4o2qscu0b6h" path="res://arts/sprites/mask2.png" id="11_tajuq"]
+[ext_resource type="Texture2D" uid="uid://bbff27a633wfp" path="res://arts/ui/ButtonPressed.png" id="12_8sfje"]
+[ext_resource type="Texture2D" uid="uid://clydi0q18w78i" path="res://arts/ui/ButtonHover.png" id="13_anff6"]
+[ext_resource type="Script" path="res://scripts/ButtonEffects.gd" id="14_tfw7i"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 144.741
@@ -106,6 +110,21 @@ tracks/4/keys = {
 "values": [Vector2(0, 277)]
 }
 
+[sub_resource type="Animation" id="Animation_46v7k"]
+resource_name = "spawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Face:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 1),
+"update": 0,
+"values": [Vector2(0, 779), Vector2(0, 596), Vector2(0, 627), Vector2(0, 256)]
+}
+
 [sub_resource type="Animation" id="Animation_wiys2"]
 resource_name = "speaking"
 length = 5.0
@@ -128,10 +147,10 @@ tracks/1/path = NodePath("Textbox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.7, 1.9, 3.3, 4.7, 5),
-"transitions": PackedFloat32Array(0.5, 2, -2, -2, -2, 0.5, 1),
+"times": PackedFloat32Array(0, 0.4, 0.6, 1.9, 3.3, 4.7, 5),
+"transitions": PackedFloat32Array(0.5, 2, -2, -2, -2, 0.5, -2),
 "update": 0,
-"values": [Vector2(253, 279), Vector2(584, 228), Vector2(586, 206), Vector2(586, 202), Vector2(586, 206), Vector2(586, 202), Vector2(583, 287)]
+"values": [Vector2(253, 279), Vector2(584, 228), Vector2(672, 250), Vector2(672, 232), Vector2(672, 258), Vector2(672, 250), Vector2(672, 346)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -140,7 +159,7 @@ tracks/2/path = NodePath("Textbox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.7),
+"times": PackedFloat32Array(0, 0.4, 0.6),
 "transitions": PackedFloat32Array(0.5, 2, 1),
 "update": 0,
 "values": [1.60461, 0.39376, 0.196437]
@@ -152,10 +171,10 @@ tracks/3/path = NodePath("Textbox:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.7),
+"times": PackedFloat32Array(0, 0.4, 0.6),
 "transitions": PackedFloat32Array(0.5, 2, 1),
 "update": 0,
-"values": [Vector2(0.298134, 0.298134), Vector2(1.42659, 1.42659), Vector2(1.39416, 1.39416)]
+"values": [Vector2(0.298134, 0.298134), Vector2(1.42659, 1.42659), Vector2(2.09659, 2.09659)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -164,10 +183,10 @@ tracks/4/path = NodePath("Textbox:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.7, 4.7, 5),
+"times": PackedFloat32Array(0, 0.3, 0.6, 4.7, 5),
 "transitions": PackedFloat32Array(0.5, 2, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(0.670588, 0.670588, 0.670588, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(0.662745, 0.662745, 0.662745, 0.560784), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -180,21 +199,6 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [0.0, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_46v7k"]
-resource_name = "spawn"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Face:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5, 1),
-"transitions": PackedFloat32Array(0.5, 2, 0.5, 1),
-"update": 0,
-"values": [Vector2(0, 779), Vector2(0, 596), Vector2(0, 627), Vector2(0, 256)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5844e"]
@@ -213,27 +217,21 @@ modulate = Color(1, 1, 1, 0)
 position = Vector2(586, 206)
 rotation = 0.196437
 scale = Vector2(1.39416, 1.39416)
-texture = ExtResource("6_d0343")
-
-[node name="Text-box-png-23" type="Sprite2D" parent="Textbox"]
-modulate = Color(0, 0, 0, 1)
-z_index = -2
-position = Vector2(4.07389, 5.77138)
-texture = ExtResource("6_d0343")
+texture = ExtResource("2_lrly4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Textbox"]
-offset_left = -155.0
-offset_top = -113.0
-offset_right = 130.0
-offset_bottom = 85.0
-rotation = -0.0618045
+offset_left = -102.0
+offset_top = -66.0
+offset_right = 137.0
+offset_bottom = 62.0
+rotation = -0.00139626
 alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Textbox/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("7_b8lk8")
-theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "[center]Don't forget to drink water![/center]"
 fit_content = true
@@ -256,6 +254,7 @@ z_index = 100
 z_as_relative = false
 material = SubResource("ShaderMaterial_5ri0t")
 position = Vector2(672, 315)
+scale = Vector2(0.909239, 0.909239)
 texture = ExtResource("3")
 offset = Vector2(86.678, 116.821)
 script = ExtResource("4")
@@ -287,29 +286,83 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -19.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer"]
 layout_mode = 2
 
-[node name="SFX" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+[node name="SFX" type="TextureButton" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 52
-text = "Mute"
+texture_normal = ExtResource("11_ens3u")
+texture_pressed = ExtResource("12_8sfje")
+texture_hover = ExtResource("13_anff6")
+stretch_mode = 3
+script = ExtResource("14_tfw7i")
 
-[node name="Switch" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/SFX"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_b8lk8")
+theme_override_font_sizes/font_size = 30
+text = "Sound - On"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Switch" type="TextureButton" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 52
+texture_normal = ExtResource("11_ens3u")
+texture_pressed = ExtResource("12_8sfje")
+texture_hover = ExtResource("13_anff6")
+stretch_mode = 3
+script = ExtResource("14_tfw7i")
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/Switch"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_b8lk8")
+theme_override_font_sizes/font_size = 30
 text = "Switch Display"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Exit" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
+[node name="Exit" type="TextureButton" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
-theme_override_font_sizes/font_size = 52
-text = "  Exit  "
+texture_normal = ExtResource("11_ens3u")
+texture_pressed = ExtResource("12_8sfje")
+texture_hover = ExtResource("13_anff6")
+stretch_mode = 3
+script = ExtResource("14_tfw7i")
+
+[node name="Label3" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/Exit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_b8lk8")
+theme_override_font_sizes/font_size = 30
+text = "Quit
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

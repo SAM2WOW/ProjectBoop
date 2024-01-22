@@ -48,6 +48,8 @@ func _on_switch_pressed():
 
 func _on_sfx_pressed():
 	AudioServer.set_bus_mute(1, not AudioServer.is_bus_mute(1))
+	
+	$CanvasLayer/Control/CenterContainer/VBoxContainer/SFX/Label.set_text("Sound - %s" % ["ON", "OFF"][int(AudioServer.is_bus_mute(1))])
 
 
 func _on_timer_timeout():

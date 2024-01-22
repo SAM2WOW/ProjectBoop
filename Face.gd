@@ -91,15 +91,15 @@ func _process(delta):
 	if pull:
 		var distance = (get_global_mouse_position().x - initial_point.x)
 		var new_x = lerp(1.0, 1.5, distance / 234.0)
-		new_x = clamp(new_x, 0.1, 1.4)
+		new_x = clamp(new_x, 0.1, 3)
 		
 		set_scale(Vector2(new_x, 1))
 		
-		if new_x > 1.2:
+		if new_x > 1.5:
 			if current_state != STATE.PULL:
 				current_state = STATE.PULL
 				SoundPlayer.play("Pull")
-		elif new_x < 0.3:
+		elif new_x < 0.5:
 			if current_state != STATE.PUSH:
 				current_state = STATE.PUSH
 				SoundPlayer.play("Squish")
