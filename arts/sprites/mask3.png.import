@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbff27a633wfp"
-path="res://.godot/imported/ButtonPressed.png-ec1f1814fd5557c354dc35a1537558d1.ctex"
+uid="uid://b7itsb7i162yu"
+path="res://.godot/imported/mask3.png-0d8e87bc6880d0e0348bc5d0bbe0ba72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://arts/ui/ButtonPressed.png"
-dest_files=["res://.godot/imported/ButtonPressed.png-ec1f1814fd5557c354dc35a1537558d1.ctex"]
+source_file="res://arts/sprites/mask3.png"
+dest_files=["res://.godot/imported/mask3.png-0d8e87bc6880d0e0348bc5d0bbe0ba72.ctex"]
 
 [params]
 

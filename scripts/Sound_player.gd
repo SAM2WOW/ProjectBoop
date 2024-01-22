@@ -12,6 +12,8 @@ var sounds = {
 	"Kirin4": "Kirin4.wav",
 }
 
+var speech = []
+
 
 func _ready():
 	for i in sounds.keys():
@@ -24,5 +26,21 @@ func _ready():
 		add_child(s)
 
 
+func add_sound(path):
+	var s = AudioStreamPlayer.new()
+	var script = load("res://scripts/AudioRandomizer.gd")
+	var audio_loader = AudioLoader.new()
+	s.set_stream(audio_loader.loadfile(path))
+	s.set_bus("Sound")
+	s.set_script(script)
+	add_child(s)
+	
+	speech.append(s)
+
+
 func play(sound_name):
 	get_node(sound_name).play()
+
+
+func speak():
+	speech[randi() % len(speech)].play()
