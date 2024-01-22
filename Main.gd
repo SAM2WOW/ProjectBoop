@@ -17,6 +17,8 @@ func _ready():
 	
 	#get_viewport().transparent = true
 	#get_viewport().transparent_bg = true
+	
+	SoundPlayer.play(["Kirin1", "Kirin3", "Kirin4"][randi() % 3])
 
 
 func _process(delta):
@@ -46,3 +48,9 @@ func _on_switch_pressed():
 
 func _on_sfx_pressed():
 	AudioServer.set_bus_mute(1, not AudioServer.is_bus_mute(1))
+
+
+func _on_timer_timeout():
+	$Face.speaking()
+	
+	$Timer.start(randf_range(20.0, 50.0))

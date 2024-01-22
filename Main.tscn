@@ -1,15 +1,30 @@
-[gd_scene load_steps=13 format=3 uid="uid://3w5l0q4ycym4"]
+[gd_scene load_steps=19 format=3 uid="uid://3w5l0q4ycym4"]
 
-[ext_resource type="Texture2D" uid="uid://cfqud845ymcnh" path="res://Face.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cfqud845ymcnh" path="res://arts/sprites/Face.png" id="1"]
 [ext_resource type="Script" path="res://Main.gd" id="1_1fkhw"]
 [ext_resource type="Script" path="res://Face.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://dgb13itud0tou" path="res://hand.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dgb13itud0tou" path="res://arts/sprites/hand.png" id="3"]
 [ext_resource type="Script" path="res://Hand.gd" id="4"]
-[ext_resource type="Texture2D" uid="uid://bcndfnwkpo2kk" path="res://text-box-png-22.png" id="6_d0343"]
+[ext_resource type="Texture2D" uid="uid://bcndfnwkpo2kk" path="res://arts/sprites/text-box-png-22.png" id="6_d0343"]
+[ext_resource type="Shader" path="res://Mask.gdshader" id="6_ygcoy"]
 [ext_resource type="FontFile" uid="uid://dmdmftfml05lx" path="res://arts/Comfortaa-Regular.ttf" id="7_b8lk8"]
+[ext_resource type="Texture2D" uid="uid://iiw63p0sj3ut" path="res://arts/sprites/handshadow.png" id="8_qboru"]
+[ext_resource type="Texture2D" uid="uid://bp4o2qscu0b6h" path="res://arts/sprites/mask2.png" id="11_tajuq"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 144.741
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ri0t"]
+shader = ExtResource("6_ygcoy")
+shader_parameter/alpha = 1.0
+shader_parameter/main_texture = ExtResource("3")
+shader_parameter/mask_texture = ExtResource("11_tajuq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p7p45"]
+shader = ExtResource("6_ygcoy")
+shader_parameter/alpha = 0.48
+shader_parameter/main_texture = ExtResource("8_qboru")
+shader_parameter/mask_texture = ExtResource("11_tajuq")
 
 [sub_resource type="Animation" id="Animation_y7iiq"]
 resource_name = "Idle"
@@ -26,70 +41,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(-2, -2, 1),
 "update": 0,
 "values": [Vector2(0, 256), Vector2(0, 280), Vector2(0, 256)]
-}
-
-[sub_resource type="Animation" id="Animation_wiys2"]
-resource_name = "speaking"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Face:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.6, 0.8, 2.6, 2.9, 3, 3.2, 3.4, 4.7, 5),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, 1),
-"update": 0,
-"values": [Vector2(0, 256), Vector2(0, 297), Vector2(0, 268), Vector2(0, 277), Vector2(0, 256), Vector2(0, 261), Vector2(0, 277), Vector2(0, 268), Vector2(0, 297), Vector2(0, 256), Vector2(0, 262), Vector2(0, 256)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Textbox:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.7, 1.9, 3.3, 4.7, 5),
-"transitions": PackedFloat32Array(0.5, 2, -2, -2, -2, 0.5, 1),
-"update": 0,
-"values": [Vector2(253, 279), Vector2(584, 228), Vector2(586, 206), Vector2(586, 202), Vector2(586, 206), Vector2(586, 202), Vector2(583, 287)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Textbox:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.7),
-"transitions": PackedFloat32Array(0.5, 2, 1),
-"update": 0,
-"values": [1.60461, 0.39376, 0.196437]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Textbox:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.7),
-"transitions": PackedFloat32Array(0.5, 2, 1),
-"update": 0,
-"values": [Vector2(0.298134, 0.298134), Vector2(1.42659, 1.42659), Vector2(1.39416, 1.39416)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Textbox:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.7, 4.7, 5),
-"transitions": PackedFloat32Array(0.5, 2, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(0.670588, 0.670588, 0.670588, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_nal20"]
@@ -155,10 +106,102 @@ tracks/4/keys = {
 "values": [Vector2(0, 277)]
 }
 
+[sub_resource type="Animation" id="Animation_wiys2"]
+resource_name = "speaking"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Face:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.6, 0.8, 2.6, 2.9, 3, 3.2, 3.4, 4.7, 5),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, 1),
+"update": 0,
+"values": [Vector2(0, 256), Vector2(0, 297), Vector2(0, 268), Vector2(0, 277), Vector2(0, 256), Vector2(0, 261), Vector2(0, 277), Vector2(0, 268), Vector2(0, 297), Vector2(0, 256), Vector2(0, 262), Vector2(0, 256)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Textbox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7, 1.9, 3.3, 4.7, 5),
+"transitions": PackedFloat32Array(0.5, 2, -2, -2, -2, 0.5, 1),
+"update": 0,
+"values": [Vector2(253, 279), Vector2(584, 228), Vector2(586, 206), Vector2(586, 202), Vector2(586, 206), Vector2(586, 202), Vector2(583, 287)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Textbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [1.60461, 0.39376, 0.196437]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Textbox:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0.298134, 0.298134), Vector2(1.42659, 1.42659), Vector2(1.39416, 1.39416)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Textbox:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7, 4.7, 5),
+"transitions": PackedFloat32Array(0.5, 2, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.670588, 0.670588, 0.670588, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Textbox/VBoxContainer/RichTextLabel:visible_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_46v7k"]
+resource_name = "spawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Face:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 1),
+"update": 0,
+"values": [Vector2(0, 779), Vector2(0, 596), Vector2(0, 627), Vector2(0, 256)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5844e"]
 _data = {
 "Idle": SubResource("Animation_y7iiq"),
 "RESET": SubResource("Animation_nal20"),
+"spawn": SubResource("Animation_46v7k"),
 "speaking": SubResource("Animation_wiys2")
 }
 
@@ -176,14 +219,13 @@ texture = ExtResource("6_d0343")
 modulate = Color(0, 0, 0, 1)
 z_index = -2
 position = Vector2(4.07389, 5.77138)
-scale = Vector2(1, 1)
 texture = ExtResource("6_d0343")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Textbox"]
-offset_left = -135.238
-offset_top = -106.273
-offset_right = 112.762
-offset_bottom = 78.7272
+offset_left = -155.0
+offset_top = -113.0
+offset_right = 130.0
+offset_bottom = 85.0
 rotation = -0.0618045
 alignment = 1
 
@@ -191,7 +233,7 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("7_b8lk8")
-theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "[center]Don't forget to drink water![/center]"
 fit_content = true
@@ -210,10 +252,20 @@ position = Vector2(264, 12)
 shape = SubResource("1")
 
 [node name="Hand" type="Sprite2D" parent="."]
+z_index = 100
+z_as_relative = false
+material = SubResource("ShaderMaterial_5ri0t")
 position = Vector2(672, 315)
 texture = ExtResource("3")
 offset = Vector2(86.678, 116.821)
 script = ExtResource("4")
+
+[node name="Handshadow" type="Sprite2D" parent="Hand"]
+modulate = Color(1, 1, 1, 0.360784)
+z_index = -1
+material = SubResource("ShaderMaterial_p7p45")
+position = Vector2(90, 137)
+texture = ExtResource("8_qboru")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(512, 256)
@@ -226,6 +278,7 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 408.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -242,16 +295,19 @@ layout_mode = 2
 
 [node name="SFX" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 52
 text = "Mute"
 
 [node name="Switch" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 52
 text = "Switch Display"
 
 [node name="Exit" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 52
 text = "  Exit  "
 
@@ -259,11 +315,17 @@ text = "  Exit  "
 libraries = {
 "": SubResource("AnimationLibrary_5844e")
 }
-autoplay = "Idle"
+autoplay = "spawn"
 playback_default_blend_time = 0.5
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
 
 [connection signal="input_event" from="Face/Area2D" to="Face" method="_on_Area2D_input_event"]
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer/VBoxContainer/SFX" to="." method="_on_sfx_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer/VBoxContainer/Switch" to="." method="_on_switch_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="Face" method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
