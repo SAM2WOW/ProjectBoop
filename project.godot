@@ -42,7 +42,7 @@ window/per_pixel_transparency/enabled=true
 
 [dotnet]
 
-project/assembly_name="BoopPal"
+project/assembly_name="ProjectBoop"
 
 [editor_plugins]
 
