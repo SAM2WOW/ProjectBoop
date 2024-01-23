@@ -1,7 +1,8 @@
 extends Node2D
 
-
 var click_pos
+
+var hovering = false
 
 var menu = false
 var snapDistance = 50
@@ -11,11 +12,15 @@ var current_character = 0
 
 var texture_count = 0
 var single_texture_name
+
+var speech_count = 0
+var single_speech_name
+
 var default_texture
 var open_texture
 
 var audio_list = []
-var speech_list = []
+var speech_list = {}
 
 var base_path = "user://levels/"
 
@@ -37,7 +42,8 @@ func _ready():
 	
 	if OS.has_feature("release"):
 		base_path = OS.get_executable_path().get_base_dir() + "/data/"
-		
+	
+	# find all the characters
 	dir_contents(base_path)
 	
 	#for i in character_list:
@@ -66,12 +72,16 @@ func dir_contents(path):
 				print("Found file: " + file_name)
 				
 				# check if file is audio
-				if file_name.get_extension() in ["wav", "mp3", "ogg"]:
+				if file_name.get_extension().to_lower() in ["wav", "mp3", "ogg"]:
 					audio_list.append(file_name)
 				
-				elif file_name.get_extension() in ["png", "PNG"]:
+				elif file_name.get_extension().to_lower() in ["png"]:
 					texture_count += 1
 					single_texture_name = file_name
+				
+				elif file_name.get_extension().to_lower() in ["txt"]:
+					speech_count += 1
+					single_speech_name = file_name
 				
 			file_name = dir.get_next()
 	else:
@@ -79,6 +89,8 @@ func dir_contents(path):
 
 
 func _process(delta):
+	#set_position(lerp(get_position(), Vector2(0, 25 * int(hovering)), delta * 20))
+	
 	if Input.is_action_just_pressed("menu"):
 		click_pos = get_local_mouse_position()
 	
@@ -109,7 +121,12 @@ func _process(delta):
 			new_pos.x = 0
 		
 		get_window().set_position(lerp(Vector2(get_window().get_position()), Vector2(new_pos), delta * 20))
-
+		
+		$Face.set_self_modulate(lerp($Face.get_self_modulate(), Color.TRANSPARENT, delta * 20))
+		$Face/FaceShadow.get_material().set_shader_parameter("mod_color", lerp($Face/FaceShadow.get_material().get_shader_parameter("mod_color"), Vector4(0.5, 0.5, 0.5, 0.5), delta * 20))
+	else:
+		$Face.set_self_modulate(lerp($Face.get_self_modulate(), Color.WHITE, delta * 20))
+		$Face/FaceShadow.get_material().set_shader_parameter("mod_color", lerp($Face/FaceShadow.get_material().get_shader_parameter("mod_color"), Vector4(0, 0, 0, 0.7), delta * 20))
 
 func _on_exit_pressed():
 	get_tree().quit()
@@ -162,6 +179,15 @@ func load_character(character):
 	$Face.set_texture(default_texture)
 	$Face/FaceShadow.set_texture(default_texture)
 	
+	# reset tapping
+	$Face.tapping = 0
+	$Face.happiness = 0.0
+	$Face.happy = false
+	
+	$Face/Area2D/HappyParticle.set_emitting(false)
+	$Face/Area2D/HappyParticle2.set_emitting(false)
+	$Face/Area2D/HappyParticle3.set_emitting(false)
+	
 	# load mouth open sprite
 	var image2
 	if FileAccess.file_exists(base_path + "%s/%s" % [character, "open.png"]):
@@ -180,16 +206,34 @@ func load_character(character):
 	#print(SoundPlayer.speech)
 	
 	# load the speech files
-	if FileAccess.file_exists(base_path + "%s/%s" % [character, "speech.txt"]):
-		var file = FileAccess.open(base_path + "%s/%s" % [character, "speech.txt"], FileAccess.READ)
-		var content = file.get_as_text()
-		speech_list = content.split("\r\n", false)
+	# if there's only one file, load that one
+	if not speech_list.has(character):
+		var new_path
+		if speech_count != 1:
+			new_path = base_path + "%s/%s" % [character, "speech.txt"]
+		else:
+			new_path = base_path + "%s/%s" % [character, single_speech_name]
+		
+		if FileAccess.file_exists(new_path):
+			var file = FileAccess.open(new_path, FileAccess.READ)
+			var content = file.get_as_text()
+			speech_list[character] = content.split("\r\n", false)
 	
-		print(speech_list)
+	# find all the characters
+	dir_contents(base_path)
+	
+	# reset timer
+	$Timer.start(10)
 
 
 func change_speech_face(open):
-	return
-	
 	$Face.set_texture(open_texture if open else default_texture)
 	$Face/FaceShadow.set_texture(open_texture if open else default_texture)
+
+
+func _on_area_2d_mouse_entered():
+	hovering = true
+
+
+func _on_area_2d_mouse_exited():
+	hovering = false

@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://b8lsb1m4ik8ww"]
+
+[ext_resource type="Texture2D" uid="uid://dqoikcbsth2qt" path="res://arts/sprites/heart.png" id="1_34pdv"]
+[ext_resource type="Shader" path="res://arts/shaders/MaskParticle.gdshader" id="1_mkhwg"]
+[ext_resource type="Texture2D" uid="uid://bp4o2qscu0b6h" path="res://arts/sprites/mask2.png" id="3_d1hhm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_geoqy"]
+shader = ExtResource("1_mkhwg")
+shader_parameter/alpha = 1.0
+shader_parameter/mask_texture = ExtResource("3_d1hhm")
+
+[sub_resource type="Curve" id="Curve_1urmv"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 100), 157.182, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_oj38f"]
+_data = [Vector2(0, 0), 0.0, 5.17521, 0, 0, Vector2(0.0990099, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.951939, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_klry5"]
+min_value = -1.0
+_data = [Vector2(0, -1), 0.0, 12.4871, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="GDScript" id="GDScript_p3lfo"]
+script/source = "extends CPUParticles2D
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	set_emitting(true)
+
+
+func _on_Timer_timeout():
+	queue_free()
+"
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+z_index = 80
+z_as_relative = false
+material = SubResource("ShaderMaterial_geoqy")
+emitting = false
+amount = 2
+one_shot = true
+explosiveness = 0.75
+randomness = 0.57
+lifetime_randomness = 0.56
+texture = ExtResource("1_34pdv")
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 134.78
+initial_velocity_max = 300.0
+angular_velocity_min = -124.93
+angular_velocity_max = 131.51
+damping_max = 17.352
+damping_curve = SubResource("Curve_1urmv")
+scale_amount_min = 0.3
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_oj38f")
+color = Color(0.94902, 0.4, 0.682353, 1)
+hue_variation_max = 0.28
+hue_variation_curve = SubResource("Curve_klry5")
+script = SubResource("GDScript_p3lfo")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

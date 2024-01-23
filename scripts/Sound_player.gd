@@ -7,7 +7,15 @@ var sounds = {
 	"Pull": "Pull.wav",
 	"Squish": "squish.wav",
 	"UI": "Touch.wav",
-	"Button": "Button.wav"
+	"Button": "Button.wav",
+	"Pat1": "Pat1.wav",
+	"Pat2": "Pat2.wav",
+	"Pat3": "Pat3.wav",
+	"Pat4": "Pat4.wav",
+	"Grab": "Grab.wav",
+	"Bounce1": "Bounce1.wav",
+	"Bounce2": "Bounce2.wav",
+	"Happy": "Bliss.mp3",
 }
 
 var speech = []
@@ -44,7 +52,8 @@ func clear_speech():
 	speech.clear()
 
 
-func play(sound_name):
+func play(sound_name, volume = 1):
+	get_node(sound_name).set_volume_db(linear_to_db(volume))
 	get_node(sound_name).play()
 
 

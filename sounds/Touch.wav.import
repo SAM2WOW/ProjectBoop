@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Touch.wav-f08c34cfd3c616624d694fdf96b4fdce.sa
 [params]
 
 force/8_bit=false
-force/mono=false
+force/mono=true
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
@@ -21,4 +21,4 @@ edit/normalize=false
 edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
-compress/mode=1
+compress/mode=0

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class CSFix : Node2D
+public partial class CSFix : Node
 {
 	// Member variables here, example:
 	private int _a = 2;
