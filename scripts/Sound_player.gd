@@ -6,10 +6,8 @@ var sounds = {
 	"Press2": "Press2.wav",
 	"Pull": "Pull.wav",
 	"Squish": "squish.wav",
-	"Kirin1": "Kirin1.wav",
-	"Kirin2": "Kirin2.wav",
-	"Kirin3": "Kirin3.wav",
-	"Kirin4": "Kirin4.wav",
+	"UI": "Touch.wav",
+	"Button": "Button.wav"
 }
 
 var speech = []

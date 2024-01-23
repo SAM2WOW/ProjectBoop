@@ -1,7 +1,7 @@
 extends Sprite2D
 
 var tween
-var start = preload("res://Star.tscn")
+var start = preload("res://scenes/Star.tscn")
 
 var initial_point = Vector2.ZERO
 var check = false
@@ -67,25 +67,26 @@ func _input(event):
 				tween = create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 				tween.tween_property(self, "scale", Vector2(1, 1), 0.5)
 			else:
-				# Booping
-				print("Boop")
-				if scale.x < 1.05 and scale.x > 0.95:
-					set_scale(Vector2(0.7, 1))
-				
-				if tween:
-					tween.kill()
-				tween = create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
-				tween.tween_property(self, "scale", Vector2(1, 1), 0.5)
-				
-				SoundPlayer.play(["Press", "Press2"][randi() % 2])
-				
-				tapping += 1
-				if tapping == 10:
-					speaking()
-				
-				var s = start.instantiate()
-				$Area2D.add_child(s)
-				s.set_global_position(get_global_mouse_position())
+				if not get_viewport().is_input_handled():
+					# Booping
+					print("Boop")
+					if scale.x < 1.05 and scale.x > 0.95:
+						set_scale(Vector2(0.7, 1))
+					
+					if tween:
+						tween.kill()
+					tween = create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+					tween.tween_property(self, "scale", Vector2(1, 1), 0.5)
+					
+					SoundPlayer.play(["Press", "Press2"][randi() % 2])
+					
+					tapping += 1
+					if tapping == 10:
+						speaking()
+					
+					var s = start.instantiate()
+					$Area2D.add_child(s)
+					s.set_global_position(get_global_mouse_position())
 	
 	if Input.is_action_just_pressed("Boop"):
 		print("Boop")

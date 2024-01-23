@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdnsoqtnl1tdn"]
+
+[ext_resource type="Script" path="res://scenes/CSFix.cs" id="1_usjo6"]
+[ext_resource type="Texture2D" uid="uid://cfqud845ymcnh" path="res://arts/sprites/Face.png" id="2_6jvkc"]
+
+[node name="CSFix" type="Node"]
+script = ExtResource("1_usjo6")
+
+[node name="Face" type="Sprite2D" parent="."]
+position = Vector2(249, 108)
+texture = ExtResource("2_6jvkc")

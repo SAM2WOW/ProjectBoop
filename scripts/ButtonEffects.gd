@@ -19,7 +19,8 @@ func on_button_down():
 	tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(self, "scale", Vector2(0.9, 0.9), 0.15)
 	#tween.parallel().tween_property(self, "modulate", Color(1, 1, 1, 1), 0.15)
-
+	
+	SoundPlayer.play("Button")
 
 func on_button_up():
 	if tween:

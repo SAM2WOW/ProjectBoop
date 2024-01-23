@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dy2ytiujue4ns"]
 
-[ext_resource type="Texture2D" uid="uid://bmrnuxmbi1oy8" path="res://arts/ui/Star.png" id="1_27g4c"]
-[ext_resource type="Script" path="res://Star.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://bmrnuxmbi1oy8" path="res://arts/ui/Star.png" id="1_tgpnq"]
+[ext_resource type="Script" path="res://scenes/Star.gd" id="2_gq6yu"]
 
 [sub_resource type="Curve" id="1"]
 _data = [Vector2(0, 0), 0.0, 5.17521, 0, 0, Vector2(0.0990099, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.951939, 0.0, 0, 0]
@@ -20,7 +20,7 @@ one_shot = true
 explosiveness = 0.75
 randomness = 0.57
 lifetime_randomness = 0.56
-texture = ExtResource("1_27g4c")
+texture = ExtResource("1_tgpnq")
 direction = Vector2(0, 0)
 spread = 180.0
 gravity = Vector2(0, 200)
@@ -34,7 +34,7 @@ scale_amount_curve = SubResource("1")
 hue_variation_min = -0.23
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_78ub2")
-script = ExtResource("2")
+script = ExtResource("2_gq6yu")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

@@ -91,6 +91,8 @@ func _process(delta):
 				$CanvasLayer.show()
 				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 				$Hand.hide()
+				
+				SoundPlayer.play("UI")
 			else:
 				menu = false
 				$CanvasLayer.hide()
