@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://3w5l0q4ycym4"]
+[gd_scene load_steps=50 format=3 uid="uid://3w5l0q4ycym4"]
 
 [ext_resource type="Texture2D" uid="uid://cfqud845ymcnh" path="res://arts/sprites/Face.png" id="1"]
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_1fkhw"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://clydi0q18w78i" path="res://arts/ui/ButtonHover.png" id="13_anff6"]
 [ext_resource type="Texture2D" uid="uid://bufvsj0hj6tiw" path="res://arts/particles/spotlight_5.png" id="13_kyii8"]
 [ext_resource type="Script" path="res://scripts/ButtonEffects.gd" id="14_tfw7i"]
+[ext_resource type="Theme" uid="uid://mtojaegfutwc" path="res://arts/ui/new_theme.tres" id="23_4ee2b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a5gbt"]
 shader = ExtResource("6_rn1ff")
@@ -565,6 +566,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("23_4ee2b")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_b8lk8")
 theme_override_font_sizes/font_size = 30
