@@ -24,6 +24,8 @@ var speech_list = {}
 
 var base_path = "user://levels/"
 
+var setting_menu = preload("res://scenes/SettingMenu.tscn")
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	
@@ -52,7 +54,6 @@ func _ready():
 	# load the first character
 	load_character(character_list[0])
 	
-
 
 
 func dir_contents(path):
@@ -133,7 +134,15 @@ func _on_exit_pressed():
 
 
 func _on_switch_pressed():
-	DisplayServer.window_set_current_screen(wrapi(DisplayServer.window_get_current_screen() + 1, 0, DisplayServer.get_screen_count()))
+	#DisplayServer.window_set_current_screen(wrapi(DisplayServer.window_get_current_screen() + 1, 0, DisplayServer.get_screen_count()))
+	var s = setting_menu.instantiate()
+	s.set_flag(Window.FLAG_BORDERLESS, false)
+	s.set_flag(Window.FLAG_TRANSPARENT, false)
+	s.set_flag(Window.FLAG_RESIZE_DISABLED, true)
+	
+	add_child(s)
+	#s.position = Vector2(0, 0)
+	s.visible = true
 
 
 func _on_sfx_pressed():

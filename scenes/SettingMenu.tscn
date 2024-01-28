@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7kedhbylf87y"]
+
+[ext_resource type="Script" path="res://scenes/SettingMenu.gd" id="1_bf4bk"]
+[ext_resource type="Theme" uid="uid://mtojaegfutwc" path="res://arts/ui/new_theme.tres" id="1_o3lbf"]
+
+[node name="Window" type="Window"]
+title = "Corner Companion Settings"
+position = Vector2i(0, 36)
+size = Vector2i(512, 512)
+script = ExtResource("1_bf4bk")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Control/CenterContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="Control/CenterContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("1_o3lbf")
+text = "Settings"
+
+[node name="CheckButton" type="CheckButton" parent="Control/CenterContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Control/CenterContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("1_o3lbf")
+text = "Settings"
+
+[node name="CheckButton2" type="CheckButton" parent="Control/CenterContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Control/CenterContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("1_o3lbf")
+text = "Settings"
+
+[node name="CheckButton3" type="CheckButton" parent="Control/CenterContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="Control/CenterContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("1_o3lbf")
+text = "Settings"
+
+[node name="CheckButton4" type="CheckButton" parent="Control/CenterContainer/GridContainer"]
+layout_mode = 2
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
