@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7kedhbylf87y"]
+[gd_scene load_steps=6 format=3 uid="uid://b7kedhbylf87y"]
 
 [ext_resource type="Script" path="res://scenes/SettingMenu.gd" id="1_bf4bk"]
 [ext_resource type="Theme" uid="uid://mtojaegfutwc" path="res://arts/ui/new_theme.tres" id="1_o3lbf"]
+[ext_resource type="Shader" path="res://arts/shaders/BG.gdshader" id="2_55vma"]
+[ext_resource type="Texture2D" uid="uid://c1gx6alb7nad5" path="res://arts/ui/white.png" id="3_vfc20"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7tupd"]
+shader = ExtResource("2_55vma")
 
 [node name="Window" type="Window"]
 title = "Corner Companion Settings"
@@ -21,6 +26,16 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+material = SubResource("ShaderMaterial_7tupd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_vfc20")
 
 [node name="CenterContainer" type="CenterContainer" parent="Control"]
 layout_mode = 1
