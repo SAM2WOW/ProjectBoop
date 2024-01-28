@@ -37,7 +37,7 @@ columns = 2
 [node name="Label" type="Label" parent="Control/CenterContainer/GridContainer"]
 layout_mode = 2
 theme = ExtResource("1_o3lbf")
-text = "Settings"
+text = "Popup Noises"
 
 [node name="CheckButton" type="CheckButton" parent="Control/CenterContainer/GridContainer"]
 layout_mode = 2
