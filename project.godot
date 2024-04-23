@@ -12,10 +12,9 @@ config_version=5
 
 config/name="ProjectBoop"
 config/description="Corner Companion!"
-config/version="1.4"
+config/version="0.5"
 run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.2", "C#")
-run/low_processor_mode=true
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 boot_splash/image="res://arts/ui/Logo.png"
 boot_splash/fullsize=false
@@ -25,6 +24,7 @@ config/icon="res://icon.png"
 
 SoundPlayer="*res://scripts/Sound_player.gd"
 GlobalInput="*res://addons/global_input/autoload/global_input_gd/GlobalInputGd.tscn"
+SaveSystem="*res://scripts/SaveSystem.gd"
 
 [display]
 
@@ -49,7 +49,7 @@ project/assembly_name="ProjectBoop"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/global_input/plugin.cfg")
+enabled=PackedStringArray("res://addons/global_input/plugin.cfg", "res://addons/native_dialogs/plugin.cfg")
 
 [gui]
 

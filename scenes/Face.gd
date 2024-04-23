@@ -118,6 +118,10 @@ func boop():
 		$Area2D/HappyParticle3.set_emitting(false)
 
 func speaking():
+	# check if can speak
+	if not SaveSystem.settings.Popups:
+		return
+	
 	var speech = $"..".speech_list[$"..".character_list[$"..".current_character]]
 	if speech.is_empty():
 		print($"..".speech_list[$"..".character_list[$"..".current_character]])
@@ -177,7 +181,6 @@ func _process(delta):
 		$Area2D/HappyParticle.set_emitting(false)
 		$Area2D/HappyParticle2.set_emitting(false)
 		$Area2D/HappyParticle3.set_emitting(false)
-	
 	
 	if GlobalInput.is_action_just_pressed("Boop"):
 		boop()

@@ -24,14 +24,20 @@ var speech_list = {}
 
 var base_path = "user://levels/"
 
-var setting_menu = preload("res://scenes/SettingMenu.tscn")
+var setting_menu_scene = preload("res://scenes/SettingMenu.tscn")
+var setting_opened = false
+var setting_menu
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	
 	DisplayServer.window_set_current_screen(0)
-	DisplayServer.window_set_size(Vector2i(512, 256))
-	DisplayServer.window_set_position(Vector2(0, DisplayServer.screen_get_size(DisplayServer.window_get_current_screen()).y - 470))
+	
+	var newScale = SaveSystem.settings.WindowSize
+	DisplayServer.window_set_size(Vector2i(512 * newScale, 256 * newScale), 0)
+	
+	# move the window to the corner
+	DisplayServer.window_set_position(Vector2(0, DisplayServer.screen_get_size(DisplayServer.window_get_current_screen()).y - 470 * newScale))
 	
 	#get_tree().root.transparent = true
 	#get_tree().root.transparent_bg = true
@@ -54,7 +60,9 @@ func _ready():
 	# load the first character
 	load_character(character_list[0])
 	
-
+	# update volume UI text
+	$CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer2/SFX/HBoxContainer/Label.set_text(str(SaveSystem.settings.SoundVolume))
+	
 
 func dir_contents(path):
 	audio_list.clear()
@@ -134,21 +142,43 @@ func _on_exit_pressed():
 
 
 func _on_switch_pressed():
-	#DisplayServer.window_set_current_screen(wrapi(DisplayServer.window_get_current_screen() + 1, 0, DisplayServer.get_screen_count()))
-	var s = setting_menu.instantiate()
-	s.set_flag(Window.FLAG_BORDERLESS, false)
-	s.set_flag(Window.FLAG_TRANSPARENT, false)
-	s.set_flag(Window.FLAG_RESIZE_DISABLED, true)
+	if setting_opened:
+		setting_menu.popup_centered()
+		return
 	
-	add_child(s)
+	#DisplayServer.window_set_current_screen(wrapi(DisplayServer.window_get_current_screen() + 1, 0, DisplayServer.get_screen_count()))
+	setting_menu = setting_menu_scene.instantiate()
+	setting_menu.set_flag(Window.FLAG_BORDERLESS, false)
+	setting_menu.set_flag(Window.FLAG_TRANSPARENT, false)
+	setting_menu.set_flag(Window.FLAG_RESIZE_DISABLED, true)
+	
+	setting_menu.main = self
+	
+	add_child(setting_menu)
 	#s.position = Vector2(0, 0)
-	s.visible = true
+	setting_menu.visible = true
+	setting_menu.popup_centered()
+	
+	setting_opened = true
 
 
 func _on_sfx_pressed():
-	AudioServer.set_bus_mute(1, not AudioServer.is_bus_mute(1))
+	#AudioServer.set_bus_mute(1, not AudioServer.is_bus_mute(1))
 	
-	$CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer2/SFX/Label.set_text("Sound - %s" % ["ON", "OFF"][int(AudioServer.is_bus_mute(1))])
+	var newVolume = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Sound")))
+	
+	if newVolume > 0.0:
+		newVolume = 0.0
+	elif newVolume == 0.0:
+		newVolume = 1.0
+	
+	SaveSystem.settings.SoundVolume = newVolume
+	SaveSystem.save_settings()
+	
+	$CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer2/SFX/HBoxContainer/Label.set_text("x" + str(SaveSystem.settings.SoundVolume))
+	
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sound"), linear_to_db(newVolume))
+	
 
 
 func _on_timer_timeout():

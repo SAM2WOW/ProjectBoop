@@ -1,18 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7kedhbylf87y"]
+[gd_scene load_steps=13 format=3 uid="uid://b7kedhbylf87y"]
 
 [ext_resource type="Script" path="res://scenes/SettingMenu.gd" id="1_bf4bk"]
 [ext_resource type="Theme" uid="uid://mtojaegfutwc" path="res://arts/ui/new_theme.tres" id="1_o3lbf"]
 [ext_resource type="Shader" path="res://arts/shaders/BG.gdshader" id="2_55vma"]
 [ext_resource type="Texture2D" uid="uid://c1gx6alb7nad5" path="res://arts/ui/white.png" id="3_vfc20"]
+[ext_resource type="Texture2D" uid="uid://cthljum2pqxy2" path="res://arts/ui/Buttons.png" id="5_burmc"]
+[ext_resource type="Texture2D" uid="uid://bbff27a633wfp" path="res://arts/ui/ButtonPressed.png" id="6_gx7bb"]
+[ext_resource type="Texture2D" uid="uid://clydi0q18w78i" path="res://arts/ui/ButtonHover.png" id="7_bl5sm"]
+[ext_resource type="Script" path="res://scripts/ButtonEffects.gd" id="8_fdjry"]
+[ext_resource type="Texture2D" uid="uid://q758w64hpsj3" path="res://arts/ui/icons/audioOn.png" id="9_bpbif"]
+[ext_resource type="Texture2D" uid="uid://bn4u31g7kyset" path="res://arts/ui/Logo.png" id="10_2t5d3"]
+[ext_resource type="FontFile" uid="uid://dmdmftfml05lx" path="res://arts/ui/Comfortaa-Regular.ttf" id="11_481ut"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7tupd"]
 shader = ExtResource("2_55vma")
+shader_parameter/progress = 0.5
+shader_parameter/bg_color = Color(0.835294, 0.882353, 0.745098, 1)
+shader_parameter/wave_1_color = Color(0.878431, 0.886275, 0.545098, 1)
+shader_parameter/wave_2_color = Color(0.752941, 0.882353, 0.745098, 1)
+shader_parameter/wave_1_speed = -0.5
+shader_parameter/wave_2_speed = 0.5
 
 [node name="Window" type="Window"]
 title = "Corner Companion Settings"
 position = Vector2i(0, 36)
 size = Vector2i(512, 512)
 script = ExtResource("1_bf4bk")
+PopupsBtn = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/Popup/PopupCheckButton")
+SoundVolumeNode = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/SoundVolume/SoundVolumeHSlider")
+SoundVolumeLabel = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/SoundVolume/Value")
+WindowsizeNode = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/WindowSize/WindowSizeSlider")
+WindowsizeLabel = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/WindowSize/Value")
+BoopKey = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey/BoopHotkeyButton")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -38,6 +57,7 @@ grow_vertical = 2
 texture = ExtResource("3_vfc20")
 
 [node name="CenterContainer" type="CenterContainer" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,4 +101,336 @@ text = "Settings"
 [node name="CheckButton4" type="CheckButton" parent="Control/CenterContainer/GridContainer"]
 layout_mode = 2
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options" type="VBoxContainer" parent="Control/HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="General" type="TextureButton" parent="Control/HBoxContainer/Options"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("5_burmc")
+texture_pressed = ExtResource("6_gx7bb")
+texture_hover = ExtResource("7_bl5sm")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("8_fdjry")
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/Options/General"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_bpbif")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Sounds" type="TextureButton" parent="Control/HBoxContainer/Options"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("5_burmc")
+texture_pressed = ExtResource("6_gx7bb")
+texture_hover = ExtResource("7_bl5sm")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("8_fdjry")
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/Options/Sounds"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_bpbif")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Companions" type="TextureButton" parent="Control/HBoxContainer/Options"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("5_burmc")
+texture_pressed = ExtResource("6_gx7bb")
+texture_hover = ExtResource("7_bl5sm")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("8_fdjry")
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/Options/Companions"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_bpbif")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="About" type="TextureButton" parent="Control/HBoxContainer/Options"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("5_burmc")
+texture_pressed = ExtResource("6_gx7bb")
+texture_hover = ExtResource("7_bl5sm")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("8_fdjry")
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/Options/About"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_bpbif")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TabContainer" type="TabContainer" parent="Control/HBoxContainer/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+tab_alignment = 1
+tabs_visible = false
+
+[node name="General" type="MarginContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="General" type="VBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General"]
+layout_mode = 2
+
+[node name="Popup" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Popup"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("11_481ut")
+theme_override_font_sizes/font_size = 20
+text = "Show Popup Dialogues"
+
+[node name="PopupCheckButton" type="CheckButton" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Popup"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+button_pressed = true
+
+[node name="SoundVolume" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SoundVolume"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_481ut")
+theme_override_font_sizes/font_size = 20
+text = "Sound Volume"
+
+[node name="Value" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SoundVolume"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 0.403922)
+theme_override_fonts/font = ExtResource("11_481ut")
+text = "1.0"
+
+[node name="SoundVolumeHSlider" type="HSlider" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SoundVolume"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+focus_mode = 0
+max_value = 1.0
+step = 0.1
+
+[node name="WindowSize" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/WindowSize"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_481ut")
+theme_override_font_sizes/font_size = 20
+text = "Window Size"
+
+[node name="Value" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/WindowSize"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 0.403922)
+theme_override_fonts/font = ExtResource("11_481ut")
+text = "1.0x"
+
+[node name="WindowSizeSlider" type="HSlider" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/WindowSize"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+focus_mode = 0
+min_value = 0.2
+max_value = 2.0
+step = 0.2
+value = 1.0
+
+[node name="BoopHotkey" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("11_481ut")
+theme_override_font_sizes/font_size = 20
+text = "Boop Hotkey"
+
+[node name="BoopHotkeyButton" type="Button" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+text = "Q"
+
+[node name="Label2" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(1, 1, 1, 0.403922)
+theme_override_fonts/font = ExtResource("11_481ut")
+text = "Experimental Features"
+
+[node name="HSeparator" type="HSeparator" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
+visible = false
+layout_mode = 2
+
+[node name="Jumpscare" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
+visible = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Jumpscare"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("11_481ut")
+theme_override_font_sizes/font_size = 20
+text = "Hide and Jumpscare"
+
+[node name="CheckButton" type="CheckButton" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Jumpscare"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+disabled = true
+toggle_mode = false
+
+[node name="HSeparator2" type="HSeparator" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Companions" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Companions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("11_481ut")
+theme_override_font_sizes/font_size = 20
+text = "Edit Companions"
+
+[node name="CompanionFolder" type="Button" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Companions"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+text = " Open Folder "
+
+[node name="Companions2" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Companions2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("11_481ut")
+theme_override_font_sizes/font_size = 20
+text = "Guide for Customization"
+
+[node name="Tutorial" type="Button" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Companions2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+text = " Open Tutorial "
+
+[node name="VersionCode" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(1, 1, 1, 0.403922)
+theme_override_fonts/font = ExtResource("11_481ut")
+text = "Corner Companion Beta Build v100"
+
+[node name="Sounds" type="VBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Companions" type="VBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="About" type="VBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/MarginContainer/TabContainer/About"]
+custom_minimum_size = Vector2(388, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = ExtResource("10_2t5d3")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/HBoxContainer/MarginContainer/TabContainer/About"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("11_481ut")
+text = "Made by Sam Feng
+(c) 2023-2024 unSAME Studio"
+fit_content = true
+autowrap_mode = 0
+
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="toggled" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Popup/PopupCheckButton" to="." method="_on_popup_check_button_toggled"]
+[connection signal="value_changed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SoundVolume/SoundVolumeHSlider" to="." method="_on_sound_volume_h_slider_value_changed"]
+[connection signal="value_changed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/WindowSize/WindowSizeSlider" to="." method="_on_window_size_slider_value_changed"]
+[connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey/BoopHotkeyButton" to="." method="_on_boop_hotkey_button_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Companions/CompanionFolder" to="." method="_on_companion_folder_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Companions2/Tutorial" to="." method="_on_tutorial_pressed"]

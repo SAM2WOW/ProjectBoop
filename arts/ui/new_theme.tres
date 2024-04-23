@@ -3,6 +3,9 @@
 [ext_resource type="FontFile" uid="uid://dmdmftfml05lx" path="res://arts/ui/Comfortaa-Regular.ttf" id="1_rihvg"]
 
 [resource]
+Button/fonts/font = ExtResource("1_rihvg")
+CheckButton/font_sizes/font_size = 20
+CheckButton/fonts/font = ExtResource("1_rihvg")
 Fonts/fonts/large = ExtResource("1_rihvg")
 Fonts/fonts/normal = ExtResource("1_rihvg")
 Label/font_sizes/font_size = 30

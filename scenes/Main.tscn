@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://3w5l0q4ycym4"]
+[gd_scene load_steps=53 format=3 uid="uid://3w5l0q4ycym4"]
 
 [ext_resource type="Texture2D" uid="uid://cfqud845ymcnh" path="res://arts/sprites/Face.png" id="1"]
 [ext_resource type="Script" path="res://scenes/Main.gd" id="1_1fkhw"]
@@ -23,6 +23,9 @@
 [ext_resource type="Texture2D" uid="uid://bufvsj0hj6tiw" path="res://arts/particles/spotlight_5.png" id="13_kyii8"]
 [ext_resource type="Script" path="res://scripts/ButtonEffects.gd" id="14_tfw7i"]
 [ext_resource type="Theme" uid="uid://mtojaegfutwc" path="res://arts/ui/new_theme.tres" id="23_4ee2b"]
+[ext_resource type="Texture2D" uid="uid://q758w64hpsj3" path="res://arts/ui/icons/audioOn.png" id="23_6jp7r"]
+[ext_resource type="Texture2D" uid="uid://b0hpronpygr4y" path="res://arts/ui/icons/wrench.png" id="25_yk6cr"]
+[ext_resource type="Texture2D" uid="uid://dlanqght6xexn" path="res://arts/ui/icons/cross.png" id="26_g70hf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a5gbt"]
 shader = ExtResource("6_rn1ff")
@@ -527,6 +530,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Change" type="TextureButton" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer2"]
+modulate = Color(0.776471, 0.878431, 0.737255, 1)
 layout_mode = 2
 focus_mode = 0
 texture_normal = ExtResource("11_ens3u")
@@ -551,6 +555,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SFX" type="TextureButton" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer2"]
+visible = false
 layout_mode = 2
 focus_mode = 0
 texture_normal = ExtResource("11_ens3u")
@@ -559,18 +564,35 @@ texture_hover = ExtResource("13_anff6")
 stretch_mode = 3
 script = ExtResource("14_tfw7i")
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer2/SFX"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer2/SFX"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 51.0
+offset_top = 3.0
+offset_right = -46.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer2/SFX/HBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture = ExtResource("23_6jp7r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer2/SFX/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme = ExtResource("23_4ee2b")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_b8lk8")
 theme_override_font_sizes/font_size = 30
-text = "Sound - On"
+text = "ON"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -586,13 +608,31 @@ texture_hover = ExtResource("13_anff6")
 stretch_mode = 3
 script = ExtResource("14_tfw7i")
 
-[node name="Label2" type="Label" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer/Switch"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer/Switch"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 51.0
+offset_top = 3.0
+offset_right = -46.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer/Switch/HBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture = ExtResource("25_yk6cr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer/Switch/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("23_4ee2b")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_b8lk8")
 theme_override_font_sizes/font_size = 30
@@ -601,6 +641,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Exit" type="TextureButton" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer"]
+modulate = Color(0.929412, 0.760784, 0.843137, 1)
 layout_mode = 2
 focus_mode = 0
 texture_normal = ExtResource("11_ens3u")
@@ -609,18 +650,35 @@ texture_hover = ExtResource("13_anff6")
 stretch_mode = 3
 script = ExtResource("14_tfw7i")
 
-[node name="Label3" type="Label" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer/Exit"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer/Exit"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 51.0
+offset_top = 3.0
+offset_right = -46.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer/Exit/HBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("26_g70hf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer/Exit/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("23_4ee2b")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_b8lk8")
 theme_override_font_sizes/font_size = 30
-text = "Quit
-"
+text = "Quit"
 horizontal_alignment = 1
 vertical_alignment = 1
 
