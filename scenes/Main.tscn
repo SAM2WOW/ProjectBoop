@@ -698,6 +698,10 @@ autostart = true
 wait_time = 0.1
 one_shot = true
 
+[node name="NativeAcceptDialog" type="NativeAcceptDialog" parent="."]
+title = "Oooops!"
+dialog_text = "Seem like you don't have any companions right now.. Check the README for tutorial on adding companions."
+
 [connection signal="input_event" from="Face/Area2D" to="Face" method="_on_Area2D_input_event"]
 [connection signal="mouse_entered" from="Face/Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Face/Area2D" to="." method="_on_area_2d_mouse_exited"]
@@ -709,3 +713,4 @@ one_shot = true
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="Face" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="confirmed" from="NativeAcceptDialog" to="." method="_on_native_accept_dialog_confirmed"]

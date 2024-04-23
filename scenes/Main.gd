@@ -58,7 +58,10 @@ func _ready():
 	#	dir_contents(base_path + "%s" % i)
 	
 	# load the first character
-	load_character(character_list[0])
+	if SaveSystem.settings.DefaultComp != "":
+		load_character(SaveSystem.settings.DefaultComp)
+	else:
+		load_character(character_list[0])
 	
 	# update volume UI text
 	$CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer2/SFX/HBoxContainer/Label.set_text(str(SaveSystem.settings.SoundVolume))
@@ -95,6 +98,15 @@ func dir_contents(path):
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
+		
+		#var confirmation_dialogue := NativeAcceptDialog.new()
+		#confirmation_dialogue.title = "Ooops!?"
+		#confirmation_dialogue.dialog_text = "Seem like you don't have any companions right now.. Check the README for tutorial on adding companions."
+		#add_child(confirmation_dialogue)
+		
+		$NativeAcceptDialog.show()
+		
+		#get_tree().quit()
 
 
 func _process(delta):
@@ -197,6 +209,10 @@ func load_character(character):
 	# change hint name
 	$CanvasLayer/Control/CenterContainer/HBoxContainer/VBoxContainer2/Tuber.set_text(character)
 	
+	# save to settings
+	SaveSystem.settings.DefaultComp = character
+	SaveSystem.save_settings()
+	
 	# load all the sprites from the directory
 	dir_contents(base_path + "%s" % character)
 	
@@ -205,7 +221,8 @@ func load_character(character):
 	
 	# if player doesn't have anything
 	if texture_count < 1:
-		image = Image.load_from_file("res://arts/ui/huh.png")
+		image = Image.new()
+		image.load("res://arts/ui/huh.png")
 	elif texture_count == 1:
 		image = Image.load_from_file(base_path + "%s/%s" % [character, single_texture_name])
 	else:
@@ -239,8 +256,13 @@ func load_character(character):
 	
 	# load all the sound files
 	SoundPlayer.clear_speech()
+	print(audio_list)
 	for i in audio_list:
 		SoundPlayer.add_speech(base_path + "%s/%s" % [character, i])
+		
+	# customize boop sound
+	if "boop.mp3" in audio_list:
+		pass
 	
 	#print(SoundPlayer.speech)
 	
@@ -276,3 +298,7 @@ func _on_area_2d_mouse_entered():
 
 func _on_area_2d_mouse_exited():
 	hovering = false
+
+
+func _on_native_accept_dialog_confirmed():
+	get_tree().quit()
