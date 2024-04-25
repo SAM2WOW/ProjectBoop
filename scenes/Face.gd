@@ -105,7 +105,7 @@ func boop():
 	
 	tapping += 1
 	print(tapping)
-	if tapping == 10:
+	if tapping == SaveSystem.settings.BoopCount:
 		tapping = 0
 		speaking()
 	
@@ -182,12 +182,14 @@ func _process(delta):
 		$Area2D/HappyParticle2.set_emitting(false)
 		$Area2D/HappyParticle3.set_emitting(false)
 	
+	# detecting for global hotkey input
 	if GlobalInput.is_action_just_pressed("Boop"):
-		boop()
-		
-		var s = star.instantiate()
-		get_parent().add_child(s)
-		s.set_global_position($Area2D.get_global_position())
+		if bool(SaveSystem.settings.BoopKeyToggle):
+			boop()
+			
+			var s = star.instantiate()
+			get_parent().add_child(s)
+			s.set_global_position($Area2D.get_global_position())
 	
 	if pull:
 		if pull_horizontal:

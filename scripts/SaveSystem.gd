@@ -4,9 +4,16 @@ var savePath = "user://settings.cfg"
 var settings = {
 	"DefaultComp" : "",
 	"Popups" : 1,
+	"Hydration" : 1,
 	"SoundVolume" : 1.0,
 	"WindowSize" : 1.0,
+	"BoopKeyToggle" : 1,
 	"BoopHotkey" : "BackSlash",
+	"SquishKeyToggle" : 0,
+	"SquishHotkey" : "S",
+	"SwitchKeyToggle" : 0,
+	"SwitchHotkey" : "D",
+	"BoopCount" : 10,
 }
 
 func _ready():

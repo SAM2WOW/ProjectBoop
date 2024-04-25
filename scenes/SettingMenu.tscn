@@ -24,14 +24,19 @@ shader_parameter/wave_2_speed = 0.5
 [node name="Window" type="Window"]
 title = "Corner Companion Settings"
 position = Vector2i(0, 36)
-size = Vector2i(512, 512)
+size = Vector2i(650, 512)
 script = ExtResource("1_bf4bk")
 PopupsBtn = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/Popup/PopupCheckButton")
 SoundVolumeNode = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/SoundVolume/SoundVolumeHSlider")
 SoundVolumeLabel = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/SoundVolume/Value")
 WindowsizeNode = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/WindowSize/WindowSizeSlider")
 WindowsizeLabel = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/WindowSize/Value")
+BoopKeyToggle = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey/BoopKeyToggle")
 BoopKey = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey/BoopHotkeyButton")
+SquishKeyToggle = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/SquishHotkey/SquishKeyToggle")
+SquishKey = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/SquishHotkey/SquishHotkeyButton")
+SwitchKeyToggle = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/SwtichHotkey2/SwitchKeyToggle")
+SwitchKey = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/SwtichHotkey2/SwitchHotkeyButton")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -110,7 +115,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Options" type="VBoxContainer" parent="Control/HBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="General" type="TextureButton" parent="Control/HBoxContainer/Options"]
@@ -240,7 +244,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("11_481ut")
 theme_override_font_sizes/font_size = 20
-text = "Show Popup Dialogues"
+text = "Timed Popups Dialogues"
 
 [node name="PopupCheckButton" type="CheckButton" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Popup"]
 layout_mode = 2
@@ -319,6 +323,61 @@ layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_o3lbf")
 text = "Q"
+
+[node name="BoopKeyToggle" type="CheckButton" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+button_pressed = true
+
+[node name="SquishHotkey" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
+visible = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SquishHotkey"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("11_481ut")
+theme_override_font_sizes/font_size = 20
+text = "Squish Hotkey"
+
+[node name="SquishHotkeyButton" type="Button" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SquishHotkey"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+text = "Q"
+
+[node name="SquishKeyToggle" type="CheckButton" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SquishHotkey"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+button_pressed = true
+
+[node name="SwtichHotkey2" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SwtichHotkey2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("11_481ut")
+theme_override_font_sizes/font_size = 20
+text = "Next Companion Hotkey"
+
+[node name="SwitchHotkeyButton" type="Button" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SwtichHotkey2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+text = "Q"
+
+[node name="SwitchKeyToggle" type="CheckButton" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SwtichHotkey2"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+button_pressed = true
 
 [node name="Label2" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
 visible = false
@@ -432,5 +491,10 @@ autowrap_mode = 0
 [connection signal="value_changed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SoundVolume/SoundVolumeHSlider" to="." method="_on_sound_volume_h_slider_value_changed"]
 [connection signal="value_changed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/WindowSize/WindowSizeSlider" to="." method="_on_window_size_slider_value_changed"]
 [connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey/BoopHotkeyButton" to="." method="_on_boop_hotkey_button_pressed"]
+[connection signal="toggled" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey/BoopKeyToggle" to="." method="_on_boop_key_toggle_toggled"]
+[connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SquishHotkey/SquishHotkeyButton" to="." method="_on_squish_hotkey_button_pressed"]
+[connection signal="toggled" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SquishHotkey/SquishKeyToggle" to="." method="_on_squish_key_toggle_toggled"]
+[connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SwtichHotkey2/SwitchHotkeyButton" to="." method="_on_switch_hotkey_button_pressed"]
+[connection signal="toggled" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SwtichHotkey2/SwitchKeyToggle" to="." method="_on_switch_key_toggle_toggled"]
 [connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Companions/CompanionFolder" to="." method="_on_companion_folder_pressed"]
 [connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Companions2/Tutorial" to="." method="_on_tutorial_pressed"]

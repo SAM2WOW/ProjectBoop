@@ -148,6 +148,12 @@ func _process(delta):
 	else:
 		$Face.set_self_modulate(lerp($Face.get_self_modulate(), Color.WHITE, delta * 20))
 		$Face/FaceShadow.get_material().set_shader_parameter("mod_color", lerp($Face/FaceShadow.get_material().get_shader_parameter("mod_color"), Vector4(0, 0, 0, 0.7), delta * 20))
+	
+	# detecting for global switching hotkeys
+	if GlobalInput.is_action_just_pressed("Switch"):
+		print(SaveSystem.settings.SwitchKeyToggle)
+		if bool(SaveSystem.settings.SwitchKeyToggle):
+			_on_change_pressed()
 
 func _on_exit_pressed():
 	get_tree().quit()
