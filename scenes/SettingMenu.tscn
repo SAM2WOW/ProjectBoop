@@ -1,14 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7kedhbylf87y"]
+[gd_scene load_steps=12 format=3 uid="uid://b7kedhbylf87y"]
 
 [ext_resource type="Script" path="res://scenes/SettingMenu.gd" id="1_bf4bk"]
 [ext_resource type="Theme" uid="uid://mtojaegfutwc" path="res://arts/ui/new_theme.tres" id="1_o3lbf"]
 [ext_resource type="Shader" path="res://arts/shaders/BG.gdshader" id="2_55vma"]
 [ext_resource type="Texture2D" uid="uid://c1gx6alb7nad5" path="res://arts/ui/white.png" id="3_vfc20"]
-[ext_resource type="Texture2D" uid="uid://cthljum2pqxy2" path="res://arts/ui/Buttons.png" id="5_burmc"]
-[ext_resource type="Texture2D" uid="uid://bbff27a633wfp" path="res://arts/ui/ButtonPressed.png" id="6_gx7bb"]
-[ext_resource type="Texture2D" uid="uid://clydi0q18w78i" path="res://arts/ui/ButtonHover.png" id="7_bl5sm"]
-[ext_resource type="Script" path="res://scripts/ButtonEffects.gd" id="8_fdjry"]
-[ext_resource type="Texture2D" uid="uid://q758w64hpsj3" path="res://arts/ui/icons/audioOn.png" id="9_bpbif"]
+[ext_resource type="Texture2D" uid="uid://b0hpronpygr4y" path="res://arts/ui/icons/wrench.png" id="5_dw4hw"]
+[ext_resource type="ButtonGroup" uid="uid://dmbscc5uku5mp" path="res://arts/ui/settings_button_group.tres" id="5_rtlfj"]
+[ext_resource type="Texture2D" uid="uid://yqr1fqfshbem" path="res://arts/ui/icons/star.png" id="6_xg01t"]
+[ext_resource type="Texture2D" uid="uid://dx87hqlo5yoi1" path="res://arts/ui/icons/warning.png" id="7_62pqy"]
 [ext_resource type="Texture2D" uid="uid://bn4u31g7kyset" path="res://arts/ui/Logo.png" id="10_2t5d3"]
 [ext_resource type="FontFile" uid="uid://dmdmftfml05lx" path="res://arts/ui/Comfortaa-Regular.ttf" id="11_481ut"]
 
@@ -26,17 +25,17 @@ title = "Corner Companion Settings"
 position = Vector2i(0, 36)
 size = Vector2i(650, 512)
 script = ExtResource("1_bf4bk")
-PopupsBtn = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/Popup/PopupCheckButton")
+PopupsBtn = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/Popup/PopupCheckButton")
 SoundVolumeNode = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/SoundVolume/SoundVolumeHSlider")
 SoundVolumeLabel = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/SoundVolume/Value")
 WindowsizeNode = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/WindowSize/WindowSizeSlider")
 WindowsizeLabel = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/WindowSize/Value")
-BoopKeyToggle = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey/BoopKeyToggle")
-BoopKey = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey/BoopHotkeyButton")
-SquishKeyToggle = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/SquishHotkey/SquishKeyToggle")
-SquishKey = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/SquishHotkey/SquishHotkeyButton")
-SwitchKeyToggle = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/SwtichHotkey2/SwitchKeyToggle")
-SwitchKey = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/General/General/SwtichHotkey2/SwitchHotkeyButton")
+BoopKeyToggle = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/BoopHotkey/BoopKeyToggle")
+BoopKey = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/BoopHotkey/BoopHotkeyButton")
+SquishKeyToggle = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/SquishHotkey/SquishKeyToggle")
+SquishKey = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/SquishHotkey/SquishHotkeyButton")
+SwitchKeyToggle = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/SwtichHotkey2/SwitchKeyToggle")
+SwitchKey = NodePath("Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/SwtichHotkey2/SwitchHotkeyButton")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -114,102 +113,69 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Options" type="VBoxContainer" parent="Control/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="Control/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Options" type="VBoxContainer" parent="Control/HBoxContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="General" type="TextureButton" parent="Control/HBoxContainer/Options"]
-custom_minimum_size = Vector2(100, 100)
+[node name="MarginContainer" type="MarginContainer" parent="Control/HBoxContainer/MarginContainer2/Options"]
 layout_mode = 2
-focus_mode = 0
-texture_normal = ExtResource("5_burmc")
-texture_pressed = ExtResource("6_gx7bb")
-texture_hover = ExtResource("7_bl5sm")
-ignore_texture_size = true
-stretch_mode = 5
-script = ExtResource("8_fdjry")
+theme_override_constants/margin_left = -1
+theme_override_constants/margin_bottom = 10
 
-[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/Options/General"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("9_bpbif")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Sounds" type="TextureButton" parent="Control/HBoxContainer/Options"]
-visible = false
-custom_minimum_size = Vector2(100, 100)
+[node name="General" type="Button" parent="Control/HBoxContainer/MarginContainer2/Options/MarginContainer"]
+custom_minimum_size = Vector2(100, 70)
 layout_mode = 2
 focus_mode = 0
-texture_normal = ExtResource("5_burmc")
-texture_pressed = ExtResource("6_gx7bb")
-texture_hover = ExtResource("7_bl5sm")
-ignore_texture_size = true
-stretch_mode = 5
-script = ExtResource("8_fdjry")
+theme = ExtResource("1_o3lbf")
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("5_rtlfj")
+text = "General"
+icon = ExtResource("5_dw4hw")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
 
-[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/Options/Sounds"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("9_bpbif")
-expand_mode = 1
-stretch_mode = 5
+[node name="MarginContainer2" type="MarginContainer" parent="Control/HBoxContainer/MarginContainer2/Options"]
+layout_mode = 2
+theme_override_constants/margin_left = -1
+theme_override_constants/margin_bottom = 10
 
-[node name="Companions" type="TextureButton" parent="Control/HBoxContainer/Options"]
-visible = false
-custom_minimum_size = Vector2(100, 100)
+[node name="Interaction" type="Button" parent="Control/HBoxContainer/MarginContainer2/Options/MarginContainer2"]
+custom_minimum_size = Vector2(100, 70)
 layout_mode = 2
 focus_mode = 0
-texture_normal = ExtResource("5_burmc")
-texture_pressed = ExtResource("6_gx7bb")
-texture_hover = ExtResource("7_bl5sm")
-ignore_texture_size = true
-stretch_mode = 5
-script = ExtResource("8_fdjry")
+theme = ExtResource("1_o3lbf")
+toggle_mode = true
+button_group = ExtResource("5_rtlfj")
+text = "Interaction"
+icon = ExtResource("6_xg01t")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
 
-[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/Options/Companions"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("9_bpbif")
-expand_mode = 1
-stretch_mode = 5
+[node name="MarginContainer3" type="MarginContainer" parent="Control/HBoxContainer/MarginContainer2/Options"]
+layout_mode = 2
+theme_override_constants/margin_left = -1
+theme_override_constants/margin_bottom = 10
 
-[node name="About" type="TextureButton" parent="Control/HBoxContainer/Options"]
-custom_minimum_size = Vector2(100, 100)
+[node name="Others" type="Button" parent="Control/HBoxContainer/MarginContainer2/Options/MarginContainer3"]
+custom_minimum_size = Vector2(100, 70)
 layout_mode = 2
 focus_mode = 0
-texture_normal = ExtResource("5_burmc")
-texture_pressed = ExtResource("6_gx7bb")
-texture_hover = ExtResource("7_bl5sm")
-ignore_texture_size = true
-stretch_mode = 5
-script = ExtResource("8_fdjry")
-
-[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/Options/About"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("9_bpbif")
-expand_mode = 1
-stretch_mode = 5
+theme = ExtResource("1_o3lbf")
+toggle_mode = true
+button_group = ExtResource("5_rtlfj")
+text = "Others"
+icon = ExtResource("7_62pqy")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/HBoxContainer"]
 layout_mode = 2
@@ -226,6 +192,7 @@ tab_alignment = 1
 tabs_visible = false
 
 [node name="General" type="MarginContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -234,23 +201,6 @@ theme_override_constants/margin_bottom = 20
 
 [node name="General" type="VBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General"]
 layout_mode = 2
-
-[node name="Popup" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Popup"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("11_481ut")
-theme_override_font_sizes/font_size = 20
-text = "Timed Popups Dialogues"
-
-[node name="PopupCheckButton" type="CheckButton" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Popup"]
-layout_mode = 2
-focus_mode = 0
-theme = ExtResource("1_o3lbf")
-button_pressed = true
 
 [node name="SoundVolume" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
 custom_minimum_size = Vector2(0, 40)
@@ -305,79 +255,6 @@ min_value = 0.2
 max_value = 2.0
 step = 0.2
 value = 1.0
-
-[node name="BoopHotkey" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("11_481ut")
-theme_override_font_sizes/font_size = 20
-text = "Boop Hotkey"
-
-[node name="BoopHotkeyButton" type="Button" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-focus_mode = 0
-theme = ExtResource("1_o3lbf")
-text = "Q"
-
-[node name="BoopKeyToggle" type="CheckButton" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey"]
-layout_mode = 2
-focus_mode = 0
-theme = ExtResource("1_o3lbf")
-button_pressed = true
-
-[node name="SquishHotkey" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
-visible = false
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SquishHotkey"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("11_481ut")
-theme_override_font_sizes/font_size = 20
-text = "Squish Hotkey"
-
-[node name="SquishHotkeyButton" type="Button" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SquishHotkey"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-focus_mode = 0
-theme = ExtResource("1_o3lbf")
-text = "Q"
-
-[node name="SquishKeyToggle" type="CheckButton" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SquishHotkey"]
-layout_mode = 2
-focus_mode = 0
-theme = ExtResource("1_o3lbf")
-button_pressed = true
-
-[node name="SwtichHotkey2" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SwtichHotkey2"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("11_481ut")
-theme_override_font_sizes/font_size = 20
-text = "Next Companion Hotkey"
-
-[node name="SwitchHotkeyButton" type="Button" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SwtichHotkey2"]
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-focus_mode = 0
-theme = ExtResource("1_o3lbf")
-text = "Q"
-
-[node name="SwitchKeyToggle" type="CheckButton" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SwtichHotkey2"]
-layout_mode = 2
-focus_mode = 0
-theme = ExtResource("1_o3lbf")
-button_pressed = true
 
 [node name="Label2" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/General/General"]
 visible = false
@@ -457,13 +334,134 @@ theme_override_colors/font_color = Color(1, 1, 1, 0.403922)
 theme_override_fonts/font = ExtResource("11_481ut")
 text = "Corner Companion Beta Build v100"
 
-[node name="Sounds" type="VBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer"]
-visible = false
+[node name="Interaction" type="MarginContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="General" type="VBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction"]
 layout_mode = 2
 
-[node name="Companions" type="VBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer"]
-visible = false
+[node name="Popup" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/Popup"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("11_481ut")
+theme_override_font_sizes/font_size = 20
+text = "Randomly Speak"
+
+[node name="PopupCheckButton" type="CheckButton" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/Popup"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+button_pressed = true
+
+[node name="BoopCount" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/BoopCount"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("11_481ut")
+theme_override_font_sizes/font_size = 20
+text = "How many Boop to Speak"
+
+[node name="SpinBox" type="SpinBox" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/BoopCount"]
+layout_mode = 2
+theme = ExtResource("1_o3lbf")
+min_value = 1.0
+value = 10.0
+allow_greater = true
+alignment = 1
+
+[node name="Label2" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(1, 1, 1, 0.403922)
+theme_override_fonts/font = ExtResource("11_481ut")
+text = "Hotkeys"
+
+[node name="HSeparator" type="HSeparator" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General"]
+layout_mode = 2
+
+[node name="BoopHotkey" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/BoopHotkey"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("11_481ut")
+theme_override_font_sizes/font_size = 20
+text = "Boop Hotkey"
+
+[node name="BoopHotkeyButton" type="Button" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/BoopHotkey"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+text = "Q"
+
+[node name="BoopKeyToggle" type="CheckButton" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/BoopHotkey"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+button_pressed = true
+
+[node name="SquishHotkey" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General"]
+visible = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/SquishHotkey"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("11_481ut")
+theme_override_font_sizes/font_size = 20
+text = "Squish Hotkey"
+
+[node name="SquishHotkeyButton" type="Button" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/SquishHotkey"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+text = "Q"
+
+[node name="SquishKeyToggle" type="CheckButton" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/SquishHotkey"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+button_pressed = true
+
+[node name="SwtichHotkey2" type="HBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/SwtichHotkey2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("11_481ut")
+theme_override_font_sizes/font_size = 20
+text = "Next Companion Hotkey"
+
+[node name="SwitchHotkeyButton" type="Button" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/SwtichHotkey2"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+text = "Q"
+
+[node name="SwitchKeyToggle" type="CheckButton" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/SwtichHotkey2"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_o3lbf")
+button_pressed = true
 
 [node name="About" type="VBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer"]
 visible = false
@@ -478,23 +476,26 @@ texture = ExtResource("10_2t5d3")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/HBoxContainer/MarginContainer/TabContainer/About"]
+[node name="Credit" type="Label" parent="Control/HBoxContainer/MarginContainer/TabContainer/About"]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("11_481ut")
-text = "Made by Sam Feng
-(c) 2023-2024 unSAME Studio"
-fit_content = true
-autowrap_mode = 0
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(1, 1, 1, 0.403922)
+theme_override_fonts/font = ExtResource("11_481ut")
+text = "(c) 2023-2024 unSAME Studio"
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
-[connection signal="toggled" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Popup/PopupCheckButton" to="." method="_on_popup_check_button_toggled"]
+[connection signal="pressed" from="Control/HBoxContainer/MarginContainer2/Options/MarginContainer/General" to="." method="_on_general_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/MarginContainer2/Options/MarginContainer2/Interaction" to="." method="_on_interaction_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/MarginContainer2/Options/MarginContainer3/Others" to="." method="_on_others_pressed"]
 [connection signal="value_changed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SoundVolume/SoundVolumeHSlider" to="." method="_on_sound_volume_h_slider_value_changed"]
 [connection signal="value_changed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/WindowSize/WindowSizeSlider" to="." method="_on_window_size_slider_value_changed"]
-[connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey/BoopHotkeyButton" to="." method="_on_boop_hotkey_button_pressed"]
-[connection signal="toggled" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/BoopHotkey/BoopKeyToggle" to="." method="_on_boop_key_toggle_toggled"]
-[connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SquishHotkey/SquishHotkeyButton" to="." method="_on_squish_hotkey_button_pressed"]
-[connection signal="toggled" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SquishHotkey/SquishKeyToggle" to="." method="_on_squish_key_toggle_toggled"]
-[connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SwtichHotkey2/SwitchHotkeyButton" to="." method="_on_switch_hotkey_button_pressed"]
-[connection signal="toggled" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/SwtichHotkey2/SwitchKeyToggle" to="." method="_on_switch_key_toggle_toggled"]
 [connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Companions/CompanionFolder" to="." method="_on_companion_folder_pressed"]
 [connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/General/General/Companions2/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="toggled" from="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/Popup/PopupCheckButton" to="." method="_on_popup_check_button_toggled"]
+[connection signal="value_changed" from="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/BoopCount/SpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/BoopHotkey/BoopHotkeyButton" to="." method="_on_boop_hotkey_button_pressed"]
+[connection signal="toggled" from="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/BoopHotkey/BoopKeyToggle" to="." method="_on_boop_key_toggle_toggled"]
+[connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/SquishHotkey/SquishHotkeyButton" to="." method="_on_squish_hotkey_button_pressed"]
+[connection signal="toggled" from="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/SquishHotkey/SquishKeyToggle" to="." method="_on_squish_key_toggle_toggled"]
+[connection signal="pressed" from="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/SwtichHotkey2/SwitchHotkeyButton" to="." method="_on_switch_hotkey_button_pressed"]
+[connection signal="toggled" from="Control/HBoxContainer/MarginContainer/TabContainer/Interaction/General/SwtichHotkey2/SwitchKeyToggle" to="." method="_on_switch_key_toggle_toggled"]

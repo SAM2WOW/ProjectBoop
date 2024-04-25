@@ -147,10 +147,29 @@ func _on_boop_key_toggle_toggled(toggled_on):
 	SaveSystem.settings.BoopKeyToggle = int(toggled_on)
 	SaveSystem.save_settings()
 
+
 func _on_squish_key_toggle_toggled(toggled_on):
 	SaveSystem.settings.SquishKeyToggle = int(toggled_on)
 	SaveSystem.save_settings()
 
+
 func _on_switch_key_toggle_toggled(toggled_on):
 	SaveSystem.settings.SwitchKeyToggle = int(toggled_on)
 	SaveSystem.save_settings()
+
+
+func _on_spin_box_value_changed(value):
+	SaveSystem.settings.BoopCount = int(value)
+	SaveSystem.save_settings()
+
+
+func _on_general_pressed():
+	$Control/HBoxContainer/MarginContainer/TabContainer.set_current_tab(0)
+
+
+func _on_interaction_pressed():
+	$Control/HBoxContainer/MarginContainer/TabContainer.set_current_tab(1)
+
+
+func _on_others_pressed():
+	$Control/HBoxContainer/MarginContainer/TabContainer.set_current_tab(2)
