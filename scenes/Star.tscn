@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://dy2ytiujue4ns"]
 
 [ext_resource type="Texture2D" uid="uid://bmrnuxmbi1oy8" path="res://arts/ui/Star.png" id="1_tgpnq"]
-[ext_resource type="Script" path="res://scenes/Star.gd" id="2_gq6yu"]
+[ext_resource type="Script" uid="uid://dwgfp3ev5jsbk" path="res://scenes/Star.gd" id="2_gq6yu"]
 
 [sub_resource type="Curve" id="1"]
 _data = [Vector2(0, 0), 0.0, 5.17521, 0, 0, Vector2(0.0990099, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.951939, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_78ub2"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, -1), 0.0, 12.4871, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
 point_count = 2
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://b7kedhbylf87y"]
 
-[ext_resource type="Script" path="res://scenes/SettingMenu.gd" id="1_bf4bk"]
+[ext_resource type="Script" uid="uid://c0bmxxeedjvgm" path="res://scenes/SettingMenu.gd" id="1_bf4bk"]
 [ext_resource type="Theme" uid="uid://mtojaegfutwc" path="res://arts/ui/new_theme.tres" id="1_o3lbf"]
-[ext_resource type="Shader" path="res://arts/shaders/BG.gdshader" id="2_55vma"]
+[ext_resource type="Shader" uid="uid://beslvgr3r1jni" path="res://arts/shaders/BG.gdshader" id="2_55vma"]
 [ext_resource type="Texture2D" uid="uid://c1gx6alb7nad5" path="res://arts/ui/white.png" id="3_vfc20"]
 [ext_resource type="Texture2D" uid="uid://b0hpronpygr4y" path="res://arts/ui/icons/wrench.png" id="5_dw4hw"]
 [ext_resource type="ButtonGroup" uid="uid://dmbscc5uku5mp" path="res://arts/ui/settings_button_group.tres" id="5_rtlfj"]
@@ -189,15 +189,16 @@ theme_override_constants/margin_bottom = 10
 clip_contents = true
 layout_mode = 2
 tab_alignment = 1
+current_tab = 0
 tabs_visible = false
 
 [node name="General" type="MarginContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
+metadata/_tab_index = 0
 
 [node name="General" type="VBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/General"]
 layout_mode = 2
@@ -335,11 +336,13 @@ theme_override_fonts/font = ExtResource("11_481ut")
 text = "Corner Companion Beta Build v100"
 
 [node name="Interaction" type="MarginContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
+metadata/_tab_index = 1
 
 [node name="General" type="VBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer/Interaction"]
 layout_mode = 2
@@ -466,6 +469,7 @@ button_pressed = true
 [node name="About" type="VBoxContainer" parent="Control/HBoxContainer/MarginContainer/TabContainer"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer/MarginContainer/TabContainer/About"]
 custom_minimum_size = Vector2(388, 0)

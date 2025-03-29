@@ -1,27 +1,27 @@
 [gd_scene load_steps=53 format=3 uid="uid://3w5l0q4ycym4"]
 
 [ext_resource type="Texture2D" uid="uid://cfqud845ymcnh" path="res://arts/sprites/Face.png" id="1"]
-[ext_resource type="Script" path="res://scenes/Main.gd" id="1_1fkhw"]
-[ext_resource type="Script" path="res://scenes/Face.gd" id="2"]
+[ext_resource type="Script" uid="uid://df45dqyrwdwia" path="res://scenes/Main.gd" id="1_1fkhw"]
+[ext_resource type="Script" uid="uid://cjm6f7fmpo16r" path="res://scenes/Face.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://cs5aytmllktta" path="res://arts/ui/Textbox.png" id="2_lrly4"]
 [ext_resource type="Texture2D" uid="uid://dgb13itud0tou" path="res://arts/sprites/hand.png" id="3"]
-[ext_resource type="Script" path="res://scenes/Hand.gd" id="4"]
-[ext_resource type="Shader" path="res://arts/shaders/Blur.gdshader" id="6_rn1ff"]
-[ext_resource type="Shader" path="res://arts/shaders/Mask.gdshader" id="6_ygcoy"]
-[ext_resource type="Shader" path="res://arts/shaders/MaskParticle.gdshader" id="7_6hhc4"]
+[ext_resource type="Script" uid="uid://be2wpo7p6b3rr" path="res://scenes/Hand.gd" id="4"]
+[ext_resource type="Shader" uid="uid://6tjf38s1vo4o" path="res://arts/shaders/Blur.gdshader" id="6_rn1ff"]
+[ext_resource type="Shader" uid="uid://w6vgifulxfnv" path="res://arts/shaders/Mask.gdshader" id="6_ygcoy"]
+[ext_resource type="Shader" uid="uid://bdaax3jam6x54" path="res://arts/shaders/MaskParticle.gdshader" id="7_6hhc4"]
 [ext_resource type="FontFile" uid="uid://dmdmftfml05lx" path="res://arts/ui/Comfortaa-Regular.ttf" id="7_b8lk8"]
 [ext_resource type="Texture2D" uid="uid://y0jvbdx8x5eh" path="res://arts/sprites/Shine.png" id="7_dh7yi"]
 [ext_resource type="Texture2D" uid="uid://dpvvsbanvnyu8" path="res://arts/particles/effect_1.png" id="10_4k1v6"]
-[ext_resource type="Shader" path="res://arts/shaders/MaskParticle2.gdshader" id="10_4xur8"]
+[ext_resource type="Shader" uid="uid://c0u6047eua25s" path="res://arts/shaders/MaskParticle2.gdshader" id="10_4xur8"]
 [ext_resource type="Texture2D" uid="uid://cthljum2pqxy2" path="res://arts/ui/Buttons.png" id="11_ens3u"]
 [ext_resource type="Texture2D" uid="uid://b7itsb7i162yu" path="res://arts/sprites/mask3.png" id="11_mytbe"]
 [ext_resource type="Texture2D" uid="uid://bp4o2qscu0b6h" path="res://arts/sprites/mask2.png" id="11_tajuq"]
-[ext_resource type="Shader" path="res://arts/shaders/MaskBlur.gdshader" id="11_tvp1i"]
+[ext_resource type="Shader" uid="uid://b0d27s5y72tnw" path="res://arts/shaders/MaskBlur.gdshader" id="11_tvp1i"]
 [ext_resource type="Texture2D" uid="uid://bbff27a633wfp" path="res://arts/ui/ButtonPressed.png" id="12_8sfje"]
 [ext_resource type="Texture2D" uid="uid://bn4oo8tg705jr" path="res://arts/sprites/white.png" id="12_al1gc"]
 [ext_resource type="Texture2D" uid="uid://clydi0q18w78i" path="res://arts/ui/ButtonHover.png" id="13_anff6"]
 [ext_resource type="Texture2D" uid="uid://bufvsj0hj6tiw" path="res://arts/particles/spotlight_5.png" id="13_kyii8"]
-[ext_resource type="Script" path="res://scripts/ButtonEffects.gd" id="14_tfw7i"]
+[ext_resource type="Script" uid="uid://bndug5nt3exbb" path="res://scripts/ButtonEffects.gd" id="14_tfw7i"]
 [ext_resource type="Theme" uid="uid://mtojaegfutwc" path="res://arts/ui/new_theme.tres" id="23_4ee2b"]
 [ext_resource type="Texture2D" uid="uid://q758w64hpsj3" path="res://arts/ui/icons/audioOn.png" id="23_6jp7r"]
 [ext_resource type="Texture2D" uid="uid://b0hpronpygr4y" path="res://arts/ui/icons/wrench.png" id="25_yk6cr"]
@@ -37,8 +37,8 @@ size = Vector2(512, 521)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5bfjd"]
 shader = ExtResource("7_6hhc4")
-shader_parameter/alpha = 1.0
 shader_parameter/mask_texture = ExtResource("11_tajuq")
+shader_parameter/alpha = 1.0
 
 [sub_resource type="Curve" id="Curve_isspr"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.702564, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -9.09266, 0.0, 0, 0]
@@ -48,7 +48,7 @@ point_count = 3
 curve = SubResource("Curve_isspr")
 
 [sub_resource type="Curve" id="Curve_4mue0"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, -1), 0.0, 4.84621, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -86,9 +86,9 @@ collision_use_scale = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dhq2h"]
 shader = ExtResource("10_4xur8")
-shader_parameter/alpha = 1.0
 shader_parameter/mask_texture = ExtResource("11_tajuq")
 shader_parameter/mask_texture2 = ExtResource("10_4k1v6")
+shader_parameter/alpha = 1.0
 
 [sub_resource type="Curve" id="Curve_tlk0t"]
 _data = [Vector2(0, 0), 0.0, 8.67946, 0, 0, Vector2(0.192308, 0.622539), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.19956, 0.0, 0, 0]
@@ -118,9 +118,12 @@ hue_variation_curve = SubResource("CurveTexture_lqldu")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qbld0"]
 shader = ExtResource("10_4xur8")
-shader_parameter/alpha = 1.0
 shader_parameter/mask_texture = ExtResource("11_tajuq")
 shader_parameter/mask_texture2 = ExtResource("13_kyii8")
+shader_parameter/alpha = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_83lq4"]
+load_path = "res://.godot/imported/white.png-3f1fd7282e5e7fd4000d1f1978a0b75a.ctex"
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b8uh7"]
 lifetime_randomness = 0.72
@@ -141,25 +144,22 @@ hue_variation_min = -0.21
 hue_variation_max = 0.2
 hue_variation_curve = SubResource("CurveTexture_lqldu")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_83lq4"]
-load_path = "res://.godot/imported/white.png-3f1fd7282e5e7fd4000d1f1978a0b75a.ctex"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1g4b"]
 size = Vector2(512, 112)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5ri0t"]
 shader = ExtResource("6_ygcoy")
-shader_parameter/alpha = 1.0
 shader_parameter/main_texture = ExtResource("3")
 shader_parameter/mask_texture = ExtResource("11_tajuq")
+shader_parameter/alpha = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p7p45"]
 shader = ExtResource("11_tvp1i")
+shader_parameter/main_texture = ExtResource("3")
+shader_parameter/mask_texture = ExtResource("11_tajuq")
 shader_parameter/alpha = 0.48
 shader_parameter/strength = 10
 shader_parameter/mod_color = Vector4(0, 0, 0, 0.7)
-shader_parameter/main_texture = ExtResource("3")
-shader_parameter/mask_texture = ExtResource("11_tajuq")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5ae50"]
 blend_mode = 3
@@ -361,10 +361,10 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5844e"]
 _data = {
-"Idle": SubResource("Animation_y7iiq"),
-"RESET": SubResource("Animation_nal20"),
-"spawn": SubResource("Animation_46v7k"),
-"speaking": SubResource("Animation_wiys2")
+&"Idle": SubResource("Animation_y7iiq"),
+&"RESET": SubResource("Animation_nal20"),
+&"spawn": SubResource("Animation_46v7k"),
+&"speaking": SubResource("Animation_wiys2")
 }
 
 [node name="Main" type="Node2D"]
@@ -389,8 +389,8 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.745098, 0.745098, 0.745098, 1)
-theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/normal_font = ExtResource("7_b8lk8")
 theme_override_font_sizes/normal_font_size = 25
@@ -427,34 +427,34 @@ shape = SubResource("RectangleShape2D_nsosi")
 material = SubResource("ShaderMaterial_5bfjd")
 emitting = false
 amount = 10
-process_material = SubResource("ParticleProcessMaterial_ccoct")
 texture = ExtResource("7_dh7yi")
 lifetime = 3.0
 randomness = 0.56
 fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ccoct")
 
 [node name="HappyParticle2" type="GPUParticles2D" parent="Face/Area2D"]
 z_index = -2
 material = SubResource("ShaderMaterial_dhq2h")
 emitting = false
 amount = 4
-process_material = SubResource("ParticleProcessMaterial_e3lna")
 texture = ExtResource("12_al1gc")
 lifetime = 5.0
 randomness = 0.46
 fixed_fps = 60
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_e3lna")
 
 [node name="HappyParticle3" type="GPUParticles2D" parent="Face/Area2D"]
 z_index = -2
 material = SubResource("ShaderMaterial_qbld0")
 amount = 2
-process_material = SubResource("ParticleProcessMaterial_b8uh7")
 texture = SubResource("CompressedTexture2D_83lq4")
 lifetime = 3.0
 randomness = 0.51
 fixed_fps = 60
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_b8uh7")
 
 [node name="Headspace" type="Area2D" parent="Face"]
 position = Vector2(256, -256)
@@ -684,7 +684,7 @@ vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_5844e")
+&"": SubResource("AnimationLibrary_5844e")
 }
 autoplay = "spawn"
 playback_default_blend_time = 0.5

@@ -1,16 +1,16 @@
 [gd_scene load_steps=9 format=3 uid="uid://b8lsb1m4ik8ww"]
 
 [ext_resource type="Texture2D" uid="uid://dqoikcbsth2qt" path="res://arts/sprites/heart.png" id="1_34pdv"]
-[ext_resource type="Shader" path="res://arts/shaders/MaskParticle.gdshader" id="1_mkhwg"]
+[ext_resource type="Shader" uid="uid://bdaax3jam6x54" path="res://arts/shaders/MaskParticle.gdshader" id="1_mkhwg"]
 [ext_resource type="Texture2D" uid="uid://bp4o2qscu0b6h" path="res://arts/sprites/mask2.png" id="3_d1hhm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_geoqy"]
 shader = ExtResource("1_mkhwg")
-shader_parameter/alpha = 1.0
 shader_parameter/mask_texture = ExtResource("3_d1hhm")
+shader_parameter/alpha = 1.0
 
 [sub_resource type="Curve" id="Curve_1urmv"]
-max_value = 100.0
+_limits = [0.0, 100.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 100), 157.182, 0.0, 0, 0]
 point_count = 2
 
@@ -19,7 +19,7 @@ _data = [Vector2(0, 0), 0.0, 5.17521, 0, 0, Vector2(0.0990099, 1), 0.0, 0.0, 0, 
 point_count = 3
 
 [sub_resource type="Curve" id="Curve_klry5"]
-min_value = -1.0
+_limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, -1), 0.0, 12.4871, 0, 0, Vector2(1, -1), 0.0, 0.0, 0, 0]
 point_count = 2
 
